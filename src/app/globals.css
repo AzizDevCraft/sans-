@@ -86,8 +86,8 @@
   --accent-foreground: oklch(0.5325 0.0216 62.16);
   /* error */
   --destructive: oklch(0.6289 0.179 31.41);
-  /* brown-100 */
-  --border: oklch(0.9312 0.0136 53.34);
+  /* brown-200 — #dfcec3, aligné sur Figma (Phase 0 homepage) */
+  --border: oklch(0.8623 0.0243 55.22);
   /* neutral-200 */
   --input: oklch(0.9562 0.0101 58.22);
   /* brown-300 */
@@ -129,8 +129,8 @@
   --secondary-soft: oklch(0.9312 0.0136 53.34);
   /* brown-500 */
   --secondary-soft-foreground: oklch(0.5425 0.0656 49.04);
-  /* brown-100 */
-  --card-alt: oklch(0.9312 0.0136 53.34);
+  /* #f5ebe6 — off-white chaud, aligné sur Figma (Phase 0 homepage) ; hors primitives colors.json */
+  --card-alt: oklch(0.9465 0.0128 48.59);
   /* brown-300 */
   --card-alt-foreground: oklch(0.7284 0.0455 53.29);
   /* neutral-100 */
