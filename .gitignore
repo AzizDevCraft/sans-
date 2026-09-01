@@ -36,7 +36,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# custom
 /.claude
+/design
+/input
+
 
 # typescript
 *.tsbuildinfo
