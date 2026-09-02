@@ -1,0 +1,20 @@
+import type { SVGProps } from "react"
+
+/** Source : src/components/icons/svg/ui-blocked.svg (viewBox 40x40, déjà carré). */
+export function BlockedIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <g clipPath="url(#blocked-clip)">
+        <path
+          d="M40 20C40 31.045 31.045 40 20 40C8.955 40 0 31.045 0 20C0 8.955 8.955 0 20 0C31.045 0 40 8.955 40 20ZM35 20C35.0049 16.8844 34.0352 13.8453 32.2267 11.3083L11.31 32.2267C13.554 33.8216 16.1937 34.7682 18.94 34.9628C21.6862 35.1574 24.433 34.5924 26.8795 33.3297C29.3259 32.0671 31.3777 30.1554 32.8101 27.8043C34.2424 25.4531 35.0001 22.7531 35 20ZM28.6917 7.77333C25.8024 5.71939 22.2791 4.75509 18.7466 5.05145C15.2141 5.34782 11.9006 6.8857 9.39401 9.39234C6.88737 11.899 5.34949 15.2124 5.05312 18.7449C4.75676 22.2774 5.72106 25.8007 7.775 28.69L28.6917 7.77333Z"
+          fill="currentColor"
+        />
+      </g>
+      <defs>
+        <clipPath id="blocked-clip">
+          <rect width="40" height="40" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  )
+}
