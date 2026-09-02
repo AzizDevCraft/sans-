@@ -1,3 +1,5 @@
+import type * as React from "react"
+
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 
@@ -9,6 +11,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/80",
+        // Alias sémantique du design SANS+ : bouton d'action plein, identique au `default`.
+        primary: "bg-primary text-primary-foreground hover:bg-primary/80",
         outline:
           "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
         secondary:
@@ -31,6 +35,12 @@ const buttonVariants = cva(
         "icon-sm":
           "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
         "icon-lg": "size-9",
+        // Taille de marque SANS+ (Figma `md/*`) : hauteur 48, px-20, gap-8,
+        // rayon 8 (rounded-md), label 16 SemiBold, icônes 20.
+        // NB : Figma indique aussi py-10 — hors échelle base-4 de DESIGN.md §3
+        // (voir rapport) ; la hauteur fixe h-12 fait foi ici.
+        brand:
+          "h-12 gap-2 rounded-md px-5 text-base font-semibold has-data-[icon=inline-end]:pr-4 has-data-[icon=inline-start]:pl-4 [&_svg:not([class*='size-'])]:size-5",
       },
     },
     defaultVariants: {
@@ -40,19 +50,44 @@ const buttonVariants = cva(
   }
 )
 
+type ButtonProps = ButtonPrimitive.Props &
+  VariantProps<typeof buttonVariants> & {
+    /** Étire le bouton sur toute la largeur du parent (hero + quiz sur mobile). */
+    fullWidth?: boolean
+    /** Icône affichée après le label (ex. `<ArrowRightIcon />`). Taille pilotée
+     *  par la `size` ; passer `className="size-4"` sur l'icône pour le cas 16px
+     *  (cartes navigation mobile). */
+    trailingIcon?: React.ReactNode
+  }
+
 function Button({
   className,
   variant = "default",
   size = "default",
+  fullWidth = false,
+  trailingIcon,
+  children,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: ButtonProps) {
   return (
     <ButtonPrimitive
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(
+        buttonVariants({ variant, size }),
+        fullWidth && "w-full",
+        className
+      )}
       {...props}
-    />
+    >
+      {children}
+      {trailingIcon != null ? (
+        <span data-icon="inline-end" className="inline-flex shrink-0">
+          {trailingIcon}
+        </span>
+      ) : null}
+    </ButtonPrimitive>
   )
 }
 
 export { Button, buttonVariants }
+export type { ButtonProps }
