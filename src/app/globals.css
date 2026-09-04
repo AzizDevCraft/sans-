@@ -46,13 +46,20 @@
   --color-card-alt: var(--card-alt);
   --color-card-alt-foreground: var(--card-alt-foreground);
   --color-background-alt: var(--background-alt);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  --color-background-gradient: var(--background-gradient);
+  --color-error-foreground: var(--error-foreground);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --shadow-base:
+    0 3px 9px 0 oklch(0.2847 0.0396 49.22 / 0.1),
+    0 10px 24px 0 oklch(0.2847 0.0396 49.22 / 0.15);
+  --shadow-hero-image: 
+    0 12px 24px oklch(28.466% 0.03957 49.196 / 0.25),
+    0 30px 80px oklch(28.466% 0.03957 49.196 / 0.15);
+  --breakpoint-md: 46.5rem;
 }
 
 :root {
@@ -75,7 +82,7 @@
   /* brown-800 */
   --secondary: oklch(0.3453 0.0465 49.73);
   /* brown-100 */
-  --secondary-foreground: oklch(0.9312 0.0136 53.34);
+  --secondary-foreground: oklch(0.9465 0.0128 48.59);
   /* neutral-100 */
   --muted: oklch(0.9789 0.0076 61.45);
   /* neutral-700 */
@@ -92,8 +99,8 @@
   --input: oklch(0.9562 0.0101 58.22);
   /* brown-300 */
   --ring: oklch(0.7284 0.0455 53.29);
-  /* pistachio-500 */
-  --chart-1: oklch(0.8316 0.1361 118.57);
+  /* pistachio-400 */
+  --chart-1: oklch(0.8841 0.097 117.76);
   /* brown-400 */
   --chart-2: oklch(0.6046 0.0682 51.04);
   /* pistachio-700 */
@@ -102,7 +109,11 @@
   --chart-4: oklch(0.7683 0.1554 70.63);
   /* brown-700 */
   --chart-5: oklch(0.396 0.0534 50.02);
-  --radius: 0.625rem;
+  --radius-sm: 0.5rem;
+  --radius: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
   /* neutral-100 */
   --sidebar: oklch(0.9789 0.0076 61.45);
   /* brown-900 */
@@ -116,7 +127,7 @@
   /* neutral-700 */
   --sidebar-accent-foreground: oklch(0.5325 0.0216 62.16);
   /* brown-100 */
-  --sidebar-border: oklch(0.9312 0.0136 53.34);
+  --sidebar-border: oklch(0.9465 0.0128 48.59);
   /* brown-300 */
   --sidebar-ring: oklch(0.7284 0.0455 53.29);
 
@@ -126,15 +137,19 @@
   /* pistachio-800 */
   --primary-soft-foreground: oklch(0.4561 0.0773 119.31);
   /* brown-100 */
-  --secondary-soft: oklch(0.9312 0.0136 53.34);
+  --secondary-soft: oklch(0.9465 0.0128 48.59);
   /* brown-500 */
   --secondary-soft-foreground: oklch(0.5425 0.0656 49.04);
-  /* #f5ebe6 — off-white chaud, aligné sur Figma (Phase 0 homepage) ; hors primitives colors.json */
+  /* brown-100 */
   --card-alt: oklch(0.9465 0.0128 48.59);
   /* brown-300 */
   --card-alt-foreground: oklch(0.7284 0.0455 53.29);
   /* neutral-100 */
   --background-alt: oklch(0.9789 0.0076 61.45);
+  /* brown-100 */
+  --background-gradient: oklch(0.9465 0.0128 48.59);
+  /* error-dark */
+  --error-foreground: oklch(0.505 0.1448 34.22);
 
   /* Signalisation */
   --success-light: oklch(0.9542 0.0388 118.17);
@@ -162,7 +177,7 @@
   /* neutral-100 */
   --popover-foreground: oklch(0.9789 0.0076 61.45);
   /* brown-100 */
-  --primary: oklch(0.9312 0.0136 53.34);
+  --primary: oklch(0.9465 0.0128 48.59);
   /* brown-900 */
   --primary-foreground: oklch(0.2847 0.0396 49.22);
   /* brown-200 */
@@ -185,8 +200,8 @@
   --input: oklch(0.396 0.0534 50.02);
   /* brown-400 */
   --ring: oklch(0.6046 0.0682 51.04);
-  /* pistachio-500 */
-  --chart-1: oklch(0.8316 0.1361 118.57);
+  /* pistachio-400 */
+  --chart-1: oklch(0.8841 0.097 117.76);
   /* brown-300 */
   --chart-2: oklch(0.7284 0.0455 53.29);
   /* pistachio-400 */
@@ -227,6 +242,21 @@
   --card-alt-foreground: oklch(0.8623 0.0243 55.22);
   /* brown-900 */
   --background-alt: oklch(0.2847 0.0396 49.22);
+  /* brown-100 */
+  --background-gradient: oklch(0.9465 0.0128 48.59);
+  /* error-dark */
+  --error-foreground: oklch(0.505 0.1448 34.22);
+
+  /* Signalisation */
+  --success-light: oklch(0.9542 0.0388 118.17);
+  --success: oklch(0.6344 0.1362 127.04);
+  --success-dark: oklch(0.4806 0.1058 129.58);
+  --warning-light: oklch(0.9503 0.0425 84.58);
+  --warning: oklch(0.7683 0.1554 70.63);
+  --warning-dark: oklch(0.5813 0.1355 55.03);
+  --error-light: oklch(0.9094 0.0417 23.43);
+  --error: oklch(0.6289 0.179 31.41);
+  --error-dark: oklch(0.505 0.1448 34.22);
 }
 
 @layer base {
