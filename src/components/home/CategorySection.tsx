@@ -113,7 +113,6 @@ export function CategorySection() {
       <div
         className={cn(
           "flex w-full flex-col items-center gap-12",
-          "md:items-start",
           "lg:mx-auto lg:max-w-282 lg:items-center lg:gap-24"
         )}
       >
