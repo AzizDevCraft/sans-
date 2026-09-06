@@ -66,7 +66,7 @@ function CategoryCard({ category, size = "sm" }: CategoryCardProps) {
         "dark",
         "relative flex min-w-0 flex-col justify-end overflow-hidden p-5",
         "h-50 rounded-lg",
-        "lg:h-80 lg:flex-1 lg:min-w-0 lg:rounded-xl lg:py-4",
+        "xl:h-80 xl:flex-1 xl:min-w-0 xl:rounded-xl xl:py-4",
         size === "lg" ? "md:col-span-2 md:h-90 md:rounded-2xl" : "md:h-60"
       )}
     >
@@ -90,7 +90,7 @@ function CategoryCard({ category, size = "sm" }: CategoryCardProps) {
         </p>
         <ArrowLink
           href={category.href}
-          className="hidden text-foreground lg:inline-flex"
+          className="hidden text-foreground xl:inline-flex"
         >
           Explorer
         </ArrowLink>
@@ -107,13 +107,13 @@ export function CategorySection() {
         "flex flex-col items-center px-5 pt-3 pb-10",
         "bg-linear-to-b from-background via-background-gradient to-background",
         "md:items-start md:px-8",
-        "lg:min-h-200 lg:items-center lg:justify-center lg:p-0"
+        "xl:min-h-200 xl:items-center xl:justify-center xl:p-0"
       )}
     >
       <div
         className={cn(
           "flex w-full flex-col items-center gap-12",
-          "lg:mx-auto lg:max-w-282 lg:items-center lg:gap-24"
+          "xl:mx-auto xl:max-w-282 xl:items-center xl:gap-24"
         )}
       >
         <SectionHeading
@@ -127,7 +127,7 @@ export function CategorySection() {
           className={cn(
             "grid w-full grid-cols-1 gap-5",
             "md:grid-cols-2 md:gap-6",
-            "lg:flex lg:gap-6"
+            "xl:flex xl:gap-6"
           )}
         >
           {CATEGORIES.map((category, index) => (

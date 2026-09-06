@@ -52,7 +52,7 @@ function PromiseItem({ icon: Icon, title, subtitle, tone, itemClassName }: Promi
   return (
     <li
       className={cn(
-        "flex items-center gap-4 md:min-w-70 lg:gap-5",
+        "flex items-center gap-4 md:min-w-70 xl:gap-5",
         itemClassName
       )}
     >
@@ -73,9 +73,9 @@ export function PromisesSection() {
   return (
     <section
       aria-label="Quatre promesses"
-      className="flex flex-col items-start bg-background px-5 py-10 md:px-8 lg:items-center lg:justify-center lg:p-1"
+      className="flex flex-col items-start bg-background px-5 py-10 md:px-8 xl:items-center xl:justify-center xl:p-1"
     >
-      <div className="flex w-full flex-col gap-12 md:gap-8 lg:max-w-282 lg:flex-row lg:items-center lg:justify-between">
+      <div className="flex w-full flex-col gap-12 md:gap-8 xl:max-w-282 xl:flex-row xl:items-center xl:justify-between">
         <SectionHeading
           eyebrow="NOTRE SIGNATURE"
           title={
@@ -87,10 +87,10 @@ export function PromisesSection() {
             </>
           }
           align="start"
-          className="md:max-w-96.5 lg:max-w-99"
+          className="md:max-w-96.5 xl:max-w-99"
         />
 
-        <ul className="flex w-full flex-col gap-11 md:max-w-170 md:flex-row md:flex-wrap md:justify-between md:gap-x-0 md:gap-y-8">
+        <ul className="flex w-full flex-col gap-11 md:flex-row md:flex-wrap md:justify-between md:gap-x-0 md:gap-y-8">
           {PROMISES.map((promise) => (
             <PromiseItem key={promise.title} {...promise} />
           ))}

@@ -32,7 +32,7 @@ export function SectionHeading({
       {eyebrow ? (
         <div className="flex items-center gap-3">
           <span className="h-0.5 w-8 shrink-0 bg-card-foreground" />
-          <span className="font-semibold lg:font-medium uppercase tracking-wider text-card-foreground md:text-[20px]/[30px] lg:text-2xl/[31px]">
+          <span className="font-semibold xl:font-medium uppercase tracking-wider text-card-foreground md:text-[20px]/[30px] xl:text-2xl/[31px]">
             {eyebrow}
           </span>
           {align === "center" ? (
@@ -41,12 +41,12 @@ export function SectionHeading({
         </div>
       ) : null}
 
-      <h2 className="text-foreground font-semibold lg:font-medium text-[28px] leading-8.75 md:text-[32px] md:leading-12 lg:text-5xl lg:leading-14">
+      <h2 className="text-foreground font-semibold xl:font-medium text-[28px] leading-8.75 md:text-[32px] md:leading-12 xl:text-5xl xl:leading-14">
         {title}
       </h2>
 
       {subtitle ? (
-        <p className="text-muted-foreground leading-6.5 md:text-xl md:leading-7.5 lg:text-2xl lg:leading-7.75">
+        <p className="text-muted-foreground leading-6.5 md:text-xl md:leading-7.5 xl:text-2xl xl:leading-7.75">
           {subtitle}
         </p>
       ) : null}

@@ -9,7 +9,7 @@ import type {
 
 import { ScrollHint } from "./hero/ScrollHint"
 
-/** Hero homepage : sombre en mobile/tablet (`.dark`), clair en desktop `lg:`. */
+/** Hero homepage : sombre en mobile/tablet (`.dark`), clair en desktop `xl:`. */
 
 // mock : données via server-builder
 const HERO: HeroContent = {
@@ -23,7 +23,7 @@ const HERO: HeroContent = {
 
 function HeroImage({ image }: { image: ImageRef }) {
   return (
-    <div className="hidden min-w-0 lg:block">
+    <div className="hidden min-w-0 xl:block">
       {/* mock : next/image via server-builder */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -47,10 +47,10 @@ interface HeroCopyProps {
 // HeroCopy — titre + sous-titre + 2 CTA, rendu une fois par sous-arbre.
 function HeroCopy({ headingId, outlineCtaClassName }: HeroCopyProps) {
   return (
-    <div className="flex flex-col gap-5 md:w-full md:max-w-170 md:items-start lg:w-full lg:min-w-0 lg:max-w-138 lg:gap-6">
+    <div className="flex flex-col gap-5 md:w-full md:max-w-170 md:items-start xl:w-full xl:min-w-0 xl:max-w-138 xl:gap-6">
       <h1
         id={headingId}
-        className="font-heading font-semibold text-[32px] leading-9.5 text-foreground md:text-[48px] md:leading-[55.2px] lg:text-[60px] lg:leading-16.5"
+        className="font-heading font-semibold text-[32px] leading-9.5 text-foreground md:text-[48px] md:leading-[55.2px] xl:text-[60px] xl:leading-16.5"
       >
         Le Plaisir{" "}
         <span className="text-chart-1">Sain</span>, Sans Compromis.
@@ -64,7 +64,7 @@ function HeroCopy({ headingId, outlineCtaClassName }: HeroCopyProps) {
       </p>
 
       {/* TODO(logic-builder): navigation des 2 CTA */}
-      <div className="flex flex-col gap-4 md:flex-row lg:gap-6">
+      <div className="flex flex-col gap-4 md:flex-row xl:gap-6">
         <Button
           variant="primary"
           size="brand"
@@ -93,10 +93,10 @@ export function HeroSection() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative flex min-h-svh flex-col items-center justify-end overflow-hidden px-5 md:px-0 md:pb-8 lg:min-h-200 lg:justify-center lg:bg-linear-to-b lg:from-card-alt lg:to-background lg:pb-0 lg:pl-24"
+      className="relative flex min-h-svh flex-col items-center justify-end overflow-hidden px-5 md:px-0 md:pb-8 xl:min-h-200 xl:justify-center xl:bg-linear-to-b xl:from-card-alt xl:to-background xl:pb-0 xl:mx-auto"
     >
       {/* fond + overlay brun — mobile/tablet ; `.dark` résout `--background` en brun */}
-      <div className="dark absolute inset-0 lg:hidden">
+      <div className="dark absolute inset-0 xl:hidden">
         {/* mock : next/image via server-builder */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -110,7 +110,7 @@ export function HeroSection() {
       <div className="relative z-10 flex w-full flex-col items-center">
         {/* deux sous-arbres exclusifs : `.dark` mobile/tablet (texte clair sur voile brun)
             vs thème clair desktop — aucun token clair n'est atteignable depuis `.dark`. */}
-        <div className="dark flex w-full flex-col gap-8 py-8 md:items-center md:px-8 md:py-0 lg:hidden">
+        <div className="dark flex w-full flex-col gap-8 py-8 md:px-8 md:py-0 xl:hidden">
           <HeroCopy
             headingId="hero-heading"
           />
@@ -118,7 +118,7 @@ export function HeroSection() {
           <ScrollHint label="QUATRE PROMESSES" className="hidden md:flex" />
         </div>
 
-        <div className="hidden w-full lg:flex lg:min-h-108 lg:flex-row lg:items-center lg:justify-center lg:gap-24">
+        <div className="hidden w-full xl:max-w-306 xl:flex xl:min-h-108 xl:flex-row xl:items-center xl:justify-between">
           <HeroCopy 
             outlineCtaClassName="bg-transparent text-foreground border-chart-5"
           />
