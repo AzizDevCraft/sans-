@@ -61,7 +61,7 @@
     0 30px 80px oklch(28.466% 0.03957 49.196 / 0.15);
   --breakpoint-md: 46.5rem;
   /* bande partenaires — défilement infini (utilitaire `animate-marquee`) */
-  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee: marquee 20s linear infinite;
 }
 
 @keyframes marquee {
