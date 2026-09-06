@@ -38,7 +38,7 @@ const CATEGORIES: Category[] = [
     id: "category-3",
     slug: "ginger-shots",
     name: "Ginger shots",
-    tagline: "L'énergie naturelle qui réveille votre journée",
+    tagline: "L'énergie naturelle qui vous réveille",
     image: {
       url: "https://placehold.co/660x640",
       alt: "Ginger shots",
@@ -82,7 +82,7 @@ function CategoryCard({ category, size = "sm" }: CategoryCardProps) {
       <div className="absolute inset-0 bg-linear-to-b from-background-alt/0 to-background/95" />
 
       <div className="relative flex flex-col gap-1">
-        <h3 className="text-xl font-bold text-foreground">
+        <h3 className="text-xl font-semi-bold text-foreground">
           {category.name}
         </h3>
         <p className="leading-6.5 text-muted-foreground">
