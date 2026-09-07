@@ -1,6 +1,6 @@
 import { IconProps } from "@/config/types";
 
-export function FacebookIcon(props: IconProps) {
+export default function FacebookIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="none" {...props}>
       <path

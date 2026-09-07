@@ -1,6 +1,6 @@
 import { IconProps } from "@/config/types"
 
-export function ChevronDownIcon(props: IconProps) {
+export default function ChevronDownIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 20 20" fill="none" {...props}>
       <path

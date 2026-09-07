@@ -1,6 +1,6 @@
 import { IconProps } from "@/config/types"
 
-export function ArrowRightIcon(props: IconProps) {
+export default function ArrowRightIcon(props: IconProps) {
   return (
     <svg viewBox="0 0 20 20" fill="none" {...props}>
       <path

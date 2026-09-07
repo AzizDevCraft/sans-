@@ -1,6 +1,6 @@
 import { IconProps } from "@/config/types";
 
-export function CloseIcon(props: IconProps) {
+export default function CloseIcon(props: IconProps) {
   return (
     <svg
       viewBox="0 0 44 44"
