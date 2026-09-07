@@ -64,7 +64,7 @@ export function IconBadge({
         "flex shrink-0 items-center justify-center [&>svg]:size-10",
         sizeClasses[size],
         toneClasses[tone],
-        shape === "full" ? "rounded-full" : "rounded-md",
+        shape === "full" ? "rounded-full" : "rounded-sm",
         inset === "sm" ? "p-1" : "p-3",
         elevated && "shadow-lg",
         className
