@@ -2,12 +2,10 @@ import type { ComponentType, SVGProps } from "react"
 
 import { IconBadge } from "@/components/IconBadge"
 import { SectionHeading } from "@/components/SectionHeading"
-import {
-  BlockedIcon,
-  GymIcon,
-  HealthHeartIcon,
-  HealthNatureIcon,
-} from "@/components/icons"
+import Block from "@/components/icons/Block"
+import Coeur from "@/components/icons/coeur"
+import GymIcon from "../icons/gym-icon"
+import Vegan from "../icons/vegan"
 import { cn } from "@/lib/utils"
 
 interface PromiseItemData {
@@ -21,13 +19,13 @@ interface PromiseItemData {
 
 const PROMISES: readonly PromiseItemData[] = [
   {
-    icon: HealthNatureIcon,
+    icon: Vegan,
     title: "Sans Sucre ajouté",
     subtitle: "Naturellement sucré",
     tone: "card",
   },
   {
-    icon: BlockedIcon,
+    icon: Block,
     title: "Sans Additifs",
     subtitle: "Ingrédients purs",
     tone: "card-alt",
@@ -40,7 +38,7 @@ const PROMISES: readonly PromiseItemData[] = [
     itemClassName: "order-4 md:order-none",
   },
   {
-    icon: HealthHeartIcon,
+    icon: Coeur,
     title: "Fait Avec Amour",
     subtitle: "Artisanal tunisien",
     tone: "card",

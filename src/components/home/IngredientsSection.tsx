@@ -2,7 +2,9 @@ import type { ComponentType, SVGProps } from "react"
 
 import { IconBadge } from "@/components/IconBadge"
 import { SectionHeading } from "@/components/SectionHeading"
-import { AlmondIcon, CaloriesIcon, NaturalSugarIcon } from "@/components/icons"
+import Amande from "@/components/icons/Amande"
+import CaloriesIcon from "@/components/icons/CaloriesIcon"
+import NoSugar from "@/components/icons/NoSugar"
 import { cn } from "@/lib/utils"
 
 import type { IngredientGalleryImage } from "../../../design/units/homepage/data-contract"
@@ -25,13 +27,13 @@ const INGREDIENT_ITEMS: readonly IngredientItemData[] = [
     subtitle: "Source de fibres et d'énergie durable",
   },
   {
-    icon: AlmondIcon,
+    icon: Amande,
     tone: "card-alt",
     title: "Amande",
     subtitle: "Protéines végétales et bonnes graisses",
   },
   {
-    icon: NaturalSugarIcon,
+    icon: NoSugar,
     tone: "card",
     title: "Sucres Naturels",
     subtitle: "Dattes, miel et fruits pour la douceur",

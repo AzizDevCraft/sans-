@@ -1,4 +1,5 @@
-import { ArrowRightIcon, QuestionIcon } from "@/components/icons"
+import QstMark from "@/components/icons/qstMark"
+import ArrowRightIcon from "@/components/icons/ArrowRightIcon"
 import { IconBadge } from "@/components/IconBadge"
 import { SectionHeading } from "@/components/SectionHeading"
 import { Button } from "@/components/ui/button"
@@ -21,7 +22,7 @@ function QuizCTA() {
         elevated={false}
         className="[&>svg]:size-8 md:size-18 md:[&>svg]:size-10"
       >
-        <QuestionIcon />
+        <QstMark />
       </IconBadge>
 
       <SectionHeading

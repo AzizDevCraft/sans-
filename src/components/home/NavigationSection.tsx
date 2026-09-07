@@ -3,9 +3,9 @@ import type { ComponentType, SVGProps } from "react"
 import { ArrowLink } from "@/components/ArrowLink"
 import { IconBadge } from "@/components/IconBadge"
 import { SectionHeading } from "@/components/SectionHeading"
-import { HealthHeartIcon } from "@/components/icons/HealthHeartIcon"
-import { QuizIcon } from "@/components/icons/QuizIcon"
-import { ShopIcon } from "@/components/icons/ShopIcon"
+import Coeur from "@/components/icons/coeur"
+import Panier from "@/components/icons/panier"
+import QuizIcon from "@/components/icons/quiz"
 import { cn } from "@/lib/utils"
 
 type NavCardTone = "card" | "card-alt"
@@ -24,7 +24,7 @@ interface NavCardData {
 // TODO(logic-builder): destinations des cartes non spécifiées
 const NAV_CARDS: readonly NavCardData[] = [
   {
-    icon: ShopIcon,
+    icon: Panier,
     title: "Boutique",
     description: "Explorer tous nos produits et commandez en ligne",
     linkLabel: "Découvrir",
@@ -41,7 +41,7 @@ const NAV_CARDS: readonly NavCardData[] = [
     tone: "card-alt",
   },
   {
-    icon: HealthHeartIcon,
+    icon: Coeur,
     title: "Nos BestSellers",
     description: "Jetez un coup d'œil sur notre trio gagnant",
     linkLabel: "En savoir plus",

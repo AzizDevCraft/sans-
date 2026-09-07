@@ -2,11 +2,9 @@ import type { ComponentType, SVGProps } from "react"
 
 import { IconBadge } from "@/components/IconBadge"
 import { SectionHeading } from "@/components/SectionHeading"
-import {
-  CheckIcon,
-  EngagementChecklistIcon,
-  OpenBookIcon,
-} from "@/components/icons"
+import Book from "@/components/icons/book"
+import CheckBox from "@/components/icons/checkBox"
+import TodoIcon from "@/components/icons/todo"
 import { cn } from "@/lib/utils"
 
 type EngagementTone = "card" | "card-alt"
@@ -24,7 +22,7 @@ const HEADING_SUBTITLE = "Transparence totale sur nos recettes et nos valeurs nu
 const CARDS: EngagementCardData[] = [
   {
     tone: "card",
-    Icon: EngagementChecklistIcon,
+    Icon: TodoIcon,
     title: "Transparence Nutritionnelle",
     description:
       "Chaque produit affiche clairement ses valeurs nutritionnelles et sa liste d'ingrédients. Pas de surprises, que des informations claires.",
@@ -36,7 +34,7 @@ const CARDS: EngagementCardData[] = [
   },
   {
     tone: "card-alt",
-    Icon: OpenBookIcon,
+    Icon: Book,
     title: "Recettes Propres",
     description:
       "Nos recettes sont simples et naturelles. Nous n'utilisons que des ingrédients que vous pourriez avoir dans votre cuisine.",
@@ -72,7 +70,7 @@ interface ChecklistItemProps {
 function ChecklistItem({ label, iconClassName }: ChecklistItemProps) {
   return (
     <li className="flex flex-row items-end gap-3 xl:items-center">
-      <CheckIcon
+      <CheckBox
         aria-hidden="true"
         className={cn("size-5 shrink-0", iconClassName)}
       />

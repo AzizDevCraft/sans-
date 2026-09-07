@@ -2,7 +2,7 @@ import type { ReactNode } from "react"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
-import { ArrowRightIcon } from "@/components/icons/ArrowRightIcon"
+import ArrowRightIcon from "./icons/ArrowRightIcon"
 
 export interface ArrowLinkProps {
   /** Destination du lien. */

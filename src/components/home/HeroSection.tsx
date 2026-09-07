@@ -1,4 +1,4 @@
-import { ArrowRightIcon } from "@/components/icons"
+import ArrowRightIcon from "@/components/icons/ArrowRightIcon"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -7,7 +7,7 @@ import type {
   ImageRef,
 } from "../../../design/units/homepage/data-contract"
 
-import { ScrollHint } from "./hero/ScrollHint"
+import { ScrollHint } from "../ScrollHint"
 
 /** Hero homepage : sombre en mobile/tablet (`.dark`), clair en desktop `xl:`. */
 
