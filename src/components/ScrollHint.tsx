@@ -1,4 +1,5 @@
-import { ChevronDownIcon } from "@/components/icons"
+// TODO(icons): ChevronDownIcon — à fournir dans le nouveau set (pas d'équivalent)
+import ChevronDownIcon from "./icons/ChevronDownIcon"
 import { cn } from "@/lib/utils"
 
 interface ScrollHintProps {
