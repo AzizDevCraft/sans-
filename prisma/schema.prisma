@@ -55,7 +55,7 @@ model Media {
   url       String  
   
   name      String
-  size      Int
+  size      Int?
   width     Int?
   height    Int?
   alt       String
