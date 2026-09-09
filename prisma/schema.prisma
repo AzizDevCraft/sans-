@@ -10,7 +10,7 @@ datasource db {
 }
 
 model Product {
-  id    String @id @default(uuid())
+  id    String @id @default(cuid(2))
   name  String
   title String
 
@@ -31,21 +31,21 @@ model Product {
 }
 
 model Categorie {
-  id      String    @id @default(uuid())
+  id      String    @id @default(cuid(2))
   name    String    @unique
   slug    String    @unique
   product Product[]
 }
 
 model Benefit {
-  id      String            @id @default(uuid())
-  benef   String
+  id      String            @id @default(cuid(2))
+  benef   String            @unique
   product ProductBenefits[]
 }
 
 model Ingredient {
-  id      String               @id @default(uuid())
-  name    String
+  id      String               @id @default(cuid(2))
+  name    String               @unique
   product ProductIngredients[]
 }
 
