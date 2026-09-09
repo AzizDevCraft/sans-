@@ -1,38 +1,17 @@
-/**
- * Seed — SANS+
- * ────────────────────────────────────────────────────────────────────────────
- * Données transcrites depuis `input/` :
- *   - input/products.ts   → Categorie, Product (+ jointures dérivées)
- *   - input/ingredient.ts → Ingredient
- *   - input/benef.ts      → Benefit
- *   - input/media.ts      → Media (mock de public/)
- *
- * Exécution ordonnée, phase par phase : chaque phase renseigne des maps
- * `fileId → idDB` que la phase suivante utilise pour créer les liens.
- *
- * Idempotent :
- *   - Categorie / Product / Ingredient / Benefit → `upsert` sur clé unique
- *     (slug, slug, name, benef). Relancer met à jour, ne duplique pas.
- *   - ProductIngredients / ProductBenefits / Media → données 100 % dérivées :
- *     `deleteMany` puis recréation à chaque run.
- *
- * Lancer :  pnpm exec tsx prisma/seed.ts   (ou `prisma db seed`)
- * Prérequis : `DATABASE_URL` défini + schéma poussé (`prisma db push`).
- */
 import "dotenv/config"
 
 import { PrismaPg } from "@prisma/adapter-pg"
 
 import { PrismaClient } from "../src/generated/prisma/client"
-import { benefits } from "../input/benef"
-import { ingredients } from "../input/ingredient"
-import { media } from "../input/media"
+import { benefits } from "./seed-data/benef"
+import { ingredients } from "./seed-data/ingredient"
+import { media } from "./seed-data/media"
 import {
   categories,
   products,
   ProductBenefits,
   ProductIngredients,
-} from "../input/products"
+} from "./seed-data/products"
 
 const connectionString =
   process.env.DIRECT_DATABASE_URL ?? process.env.DATABASE_URL
@@ -46,7 +25,7 @@ const prisma = new PrismaClient({
 })
 
 async function main() {
-  // ─── 1. Catégories ───────────────────────────────────────────────────────
+  // 1. Catégories 
   const categorieIdByFileId = new Map<string, string>()
   for (const c of categories) {
     const row = await prisma.categorie.upsert({
@@ -59,7 +38,7 @@ async function main() {
   }
   console.info(`✓ catégories : ${categories.length}`)
 
-  // ─── 2. Produits ─────────────────────────────────────────────────────────
+  // 2. Produits 
   const productIdByFileId = new Map<string, string>()
   const productIdBySlug = new Map<string, string>()
   const productIdByName = new Map<string, string>()
@@ -97,7 +76,7 @@ async function main() {
   }
   console.info(`✓ produits : ${products.length}`)
 
-  // ─── 3. Ingrédients ──────────────────────────────────────────────────────
+  // 3. Ingrédients 
   const ingredientIdByFileId = new Map<string, string>()
   for (const ing of ingredients) {
     const row = await prisma.ingredient.upsert({
@@ -110,7 +89,7 @@ async function main() {
   }
   console.info(`✓ ingrédients : ${ingredients.length}`)
 
-  // ─── 4. Bénéfices ────────────────────────────────────────────────────────
+  // 4. Bénéfices
   const benefitIdByFileId = new Map<string, string>()
   for (const b of benefits) {
     const row = await prisma.benefit.upsert({
@@ -123,7 +102,7 @@ async function main() {
   }
   console.info(`✓ bénéfices : ${benefits.length}`)
 
-  // ─── 5. Jointure Produit ↔ Ingrédient ────────────────────────────────────
+  // 5. Jointure Produit & Ingrédient
   await prisma.productIngredients.deleteMany()
   const productIngredientRows = ProductIngredients.map((pair) => ({
     idProd: productIdByFileId.get(pair.idProd),
@@ -138,7 +117,7 @@ async function main() {
   })
   console.info(`✓ produit ↔ ingrédient : ${productIngredientRows.length}`)
 
-  // ─── 6. Jointure Produit ↔ Bénéfice ──────────────────────────────────────
+  // 6. Jointure Produit & Bénéfice 
   await prisma.productBenefits.deleteMany()
   const productBenefitRows = ProductBenefits.map((pair) => ({
     idProd: productIdByFileId.get(pair.idProd),
@@ -153,9 +132,7 @@ async function main() {
   })
   console.info(`✓ produit ↔ bénéfice : ${productBenefitRows.length}`)
 
-  // ─── 7. Media (mock de public/) ──────────────────────────────────────────
-  // `Media` n'a pas de clé naturelle unique → on repart de zéro.
-  // `productId` porte un SLUG dans input/media.ts : on le retraduit en id réel.
+  // 7. Media (mock de public/) 
   await prisma.media.deleteMany()
   const mediaRows = media.map((m) => {
     let productId: string | null = null
@@ -163,7 +140,7 @@ async function main() {
       productId = productIdBySlug.get(m.productId) ?? null
       if (!productId) {
         console.warn(
-          `  ⚠ media "${m.name}" : slug produit "${m.productId}" introuvable → productId = null`,
+          `  media "${m.name}" : slug produit "${m.productId}" introuvable → productId = null`,
         )
       }
     }
