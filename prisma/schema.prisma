@@ -15,7 +15,7 @@ model Product {
   title String
 
   categorieID String
-  categorie   Categorie @relation(fields: [categorieID], references: [id])
+  categorie   Category @relation(fields: [categorieID], references: [id])
 
   calories        Int?
   proteins        Int
@@ -30,11 +30,15 @@ model Product {
   updatedAt       DateTime             @updatedAt
 }
 
-model Categorie {
+model Category {
   id      String    @id @default(cuid(2))
   name    String    @unique
+  tagline String
+  order   Int
   slug    String    @unique
   product Product[]
+  imageId String    @unique
+  image   Media     @relation(fields: [imageId], references: [id])
 }
 
 model Benefit {
@@ -50,11 +54,11 @@ model Ingredient {
 }
 
 model Media {
-  id        String   @id @default(cuid())
+  id        String   @id @default(cuid(2))
   key       String?  @unique
   url       String  
   
-  name      String
+  name      String   @unique
   size      Int?
   width     Int?
   height    Int?
@@ -63,6 +67,9 @@ model Media {
 
   product   Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String?
+
+  imgCategory    Category?
+  imgDistributor Distributor?
 
   @@index([productId])
 }
@@ -85,4 +92,24 @@ model ProductIngredients {
   ingredient Ingredient @relation(fields: [idIngredient], references: [id])
 
   @@id([idProd, idIngredient])
+}
+
+model Distributor {
+  id       String  @id @default(cuid(2))
+  slug     String  @unique
+  name     String
+  publish  Boolean @default(true)
+  position Int?
+
+  logoId   String  @unique
+  logo     Media   @relation(fields: [logoId], references: [id])
+
+  zone        String[]
+  phone       String
+  mapEmbedUrl String
+
+  /// Horaires par jour (`{ [day]: { open, close } }`) — structure libre → Json.
+  openingHours Json
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
