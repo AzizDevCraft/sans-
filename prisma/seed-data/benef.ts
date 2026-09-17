@@ -1,18 +1,18 @@
-import { createId } from "@paralleldrive/cuid2"
+type benefSeed = {
+  benef: string 
+  productsBySlug: string[]
+}
 
-
-export const benefits = [
+export const benefits: benefSeed[] = [
   {
-    "id": createId(),
-    "benef": "Énergie rapide et durable",
-    "product": [
+    benef: "Énergie rapide et durable",
+    productsBySlug: [
       "power pops"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Riche en protéines",
-    "product": [
+    benef: "Riche en protéines",
+    productsBySlug: [
       "power pops",
       "good mouse",
       "fudgy",
@@ -21,145 +21,125 @@ export const benefits = [
     ]
   },
   {
-    "id": createId(),
-    "benef": "Contrôle de l'appétit",
-    "product": [
+    benef: "Contrôle de l'appétit",
+    productsBySlug: [
       "power pops"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Boost protéiné",
-    "product": [
+    benef: "Boost protéiné",
+    productsBySlug: [
       "doughies"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Sans sucre ajouté",
-    "product": [
+    benef: "Sans sucre ajouté",
+    productsBySlug: [
       "doughies",
       "good mouse"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Parfait pré/post-workout",
-    "product": [
+    benef: "Parfait pré/post-workout",
+    productsBySlug: [
       "doughies"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Enérgie durable",
-    "product": [
+    benef: "Enérgie durable",
+    productsBySlug: [
       "good mouse"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Croquant et énergisant",
-    "product": [
+    benef: "Croquant et énergisant",
+    productsBySlug: [
       "crunchies"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Riche en oméga-3",
-    "product": [
+    benef: "Riche en oméga-3",
+    productsBySlug: [
       "crunchies"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Satiété longue durée",
-    "product": [
+    benef: "Satiété longue durée",
+    productsBySlug: [
       "crunchies"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Gourmandise sans culpabilité",
-    "product": [
+    benef: "Gourmandise sans culpabilité",
+    productsBySlug: [
       "fudgy"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Texture fondante et satisfaisante",
-    "product": [
+    benef: "Texture fondante et satisfaisante",
+    productsBySlug: [
       "fudgy"
     ]
   },
   {
-    "id": createId(),
-    "benef": "repas complet",
-    "product": [
+    benef: "repas complet",
+    productsBySlug: [
       "chickly"
     ]
   },
   {
-    "id": createId(),
-    "benef": "légumes frais",
-    "product": [
+    benef: "légumes frais",
+    productsBySlug: [
       "chickly"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Riche en protéines maigres",
-    "product": [
+    benef: "Riche en protéines maigres",
+    productsBySlug: [
       "shrimpy"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Source de fibres et minéraux",
-    "product": [
+    benef: "Source de fibres et minéraux",
+    productsBySlug: [
       "shrimpy"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Repas léger et complet",
-    "product": [
+    benef: "Repas léger et complet",
+    productsBySlug: [
       "shrimpy"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Pain maison complet",
-    "product": [
+    benef: "Pain maison complet",
+    productsBySlug: [
       "tunny"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Pratique et nourrissant",
-    "product": [
+    benef: "Pratique et nourrissant",
+    productsBySlug: [
       "tunny"
     ]
   },
   {
-    "id": createId(),
-    "benef": "énergie instantané",
-    "product": [
+    benef: "énergie instantané",
+    productsBySlug: [
       "gingy shot carotte",
       "gingy shot lemon"
     ]
   },
   {
-    "id": createId(),
-    "benef": "Boost immunitaire",
-    "product": [
+    benef: "Boost immunitaire",
+    productsBySlug: [
       "gingy shot carotte",
       "gingy shot lemon"
     ]
   },
   {
-    "id": createId(),
-    "benef": "facilite la digestion",
-    "product": [
+    benef: "facilite la digestion",
+    productsBySlug: [
       "gingy shot carotte",
       "gingy shot lemon"
     ]

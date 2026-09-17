@@ -1,9 +1,10 @@
 export type Distributor = {
-  id: string
+  slug: string
   name: string
   logo: string
   zone: string[]
   phone: string
+  position?: number
   mapEmbedUrl: string
   openingHours: {
     [day: string]: {
@@ -15,11 +16,12 @@ export type Distributor = {
 
 export const distributors: Distributor[] = [
   {
-    id: "patisserie-ines",
+    slug: "patisserie-ines",
     name: "Pâtisserie d'Inès",
-    logo: "/images/logo-patisserie-ines.jpg",
+    logo: "Logo-patisserie-ines.JPG",
     zone: ["La Marsa", "Manar 2"],
     phone: "+216 96 334 310",
+    position: 1,
     mapEmbedUrl: "https://www.google.com/maps/embed?pb=...",
     openingHours: {
       monday: { open: "10:00", close: "18:30" },
@@ -32,11 +34,12 @@ export const distributors: Distributor[] = [
     },
   },
   {
-    id: "hardBeat-athletics",
+    slug: "hardBeat-athletics",
     name: "HardBeat Athletics",
-    logo: "/images/logo-HBA.jpg",
+    logo: "logo-HBA.jpg",
     zone: ["Jardin de carthage"],
     phone: "+216 29 008 000",
+    position: 2,
     mapEmbedUrl: "https://www.google.com/maps/embed?pb=...",
     openingHours: {
       monday: { open: "06:00", close: "22:00" },
@@ -49,11 +52,12 @@ export const distributors: Distributor[] = [
     },
   },
   {
-    id: "triangle-fitness",
+    slug: "triangle-fitness",
     name: "Triangle Fitness",
-    logo: "/images/logo.jpg",
+    logo: "Logo-Triangle-fitness.JPG",
     zone: ["Jardin de carthage"],
     phone: "+216 99 858 020",
+    position: 3,
     mapEmbedUrl: "https://www.google.com/maps/embed?pb=...",
     openingHours: {
       monday: { open: "06:00", close: "22:00" },
@@ -66,11 +70,12 @@ export const distributors: Distributor[] = [
     },
   },
   {
-    id: "mon-coin-nature",
+    slug: "mon-coin-nature",
     name: "Mon Coin Nature",
-    logo: "/images/logo.jpg",
+    logo: "Logo-mon-coin-nature.JPG",
     zone: ["La marsa"],
     phone: "+216 99 858 020",
+    position: 4,
     mapEmbedUrl: "https://www.google.com/maps/embed?pb=...",
     openingHours: {
       monday: { open: "06:00", close: "22:00" },
@@ -83,11 +88,12 @@ export const distributors: Distributor[] = [
     },
   },
   {
-    id: "bolo-healthy-restaurant",
+    slug: "bolo-healthy-restaurant",
     name: "Bolo Healthy Restaurant",
-    logo: "/images/logo.jpg",
+    logo: "Logo-bolo-healthy-restaurant.JPG",
     zone: ["Menzeh 6"],
     phone: "+216 99 858 020",
+    position: 5,
     mapEmbedUrl: "https://www.google.com/maps/embed?pb=...",
     openingHours: {
       monday: { open: "06:00", close: "22:00" },

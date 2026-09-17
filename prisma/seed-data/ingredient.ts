@@ -1,256 +1,224 @@
-import { createId } from "@paralleldrive/cuid2";
+type ingredientSeed = {
+  name: string
+  productsBySlug: string[]
+}
 
-
-
-export const ingredients = [
+export const ingredients: ingredientSeed[] = [
   {
-    "id": createId(),
-    "name": "dattes",
-    "product": [
-      "power pops"
+    name: "dattes",
+    productsBySlug: [
+      "power-pops"
     ]
   },
   {
-    "id": createId(),
-    "name": "beurre de cacahuète",
-    "product": [
-      "power pops",
+    name: "beurre de cacahuète",
+    productsBySlug: [
+      "power-pops",
       "doughies"
     ]
   },
   {
-    "id": createId(),
-    "name": "flocons d'avoine",
-    "product": [
-      "power pops",
+    name: "flocons d'avoine",
+    productsBySlug: [
+      "power-pops",
       "doughies"
     ]
   },
   {
-    "id": createId(),
-    "name": "cacao",
-    "product": [
-      "power pops",
+    name: "cacao",
+    productsBySlug: [
+      "power-pops",
       "fudgy"
     ]
   },
   {
-    "id": createId(),
-    "name": "miel bio",
-    "product": [
-      "power pops",
+    name: "miel bio",
+    productsBySlug: [
+      "power-pops",
       "doughies",
       "crunchies"
     ]
   },
   {
-    "id": createId(),
-    "name": "whey",
-    "product": [
-      "power pops",
+    name: "whey",
+    productsBySlug: [
+      "power-pops",
       "doughies",
-      "good mouse"
+      "good-mouse"
     ]
   },
   {
-    "id": createId(),
-    "name": "chocolat noir 80%",
-    "product": [
-      "power pops",
+    name: "chocolat noir 80%",
+    productsBySlug: [
+      "power-pops",
       "doughies"
     ]
   },
   {
-    "id": createId(),
-    "name": "sel",
-    "product": [
-      "power pops",
+    name: "sel",
+    productsBySlug: [
+      "power-pops",
       "doughies"
     ]
   },
   {
-    "id": createId(),
-    "name": "oeufs",
-    "product": [
-      "good mouse"
+    name: "oeufs",
+    productsBySlug: [
+      "good-mouse"
     ]
   },
   {
-    "id": createId(),
-    "name": "lait",
-    "product": [
-      "good mouse",
+    name: "lait",
+    productsBySlug: [
+      "good-mouse",
       "fudgy"
     ]
   },
   {
-    "id": createId(),
-    "name": "chocolat noir 72%",
-    "product": [
-      "good mouse",
+    name: "chocolat noir 72%",
+    productsBySlug: [
+      "good-mouse",
       "fudgy"
     ]
   },
   {
-    "id": createId(),
-    "name": "mix de graine",
-    "product": [
+    name: "mix de graine",
+    productsBySlug: [
       "crunchies"
     ]
   },
   {
-    "id": createId(),
-    "name": "blanc d'oeuf",
-    "product": [
+    name: "blanc d'oeuf",
+    productsBySlug: [
       "crunchies"
     ]
   },
   {
-    "id": createId(),
-    "name": "yaourt grec",
-    "product": [
+    name: "yaourt grec",
+    productsBySlug: [
       "fudgy"
     ]
   },
   {
-    "id": createId(),
-    "name": "amande",
-    "product": [
+    name: "amande",
+    productsBySlug: [
       "fudgy"
     ]
   },
   {
-    "id": createId(),
-    "name": "farine",
-    "product": [
+    name: "farine",
+    productsBySlug: [
       "fudgy"
     ]
   },
   {
-    "id": createId(),
-    "name": "poulet grillé",
-    "product": [
+    name: "poulet grillé",
+    productsBySlug: [
       "chickly"
     ]
   },
   {
-    "id": createId(),
-    "name": "boulgour complet",
-    "product": [
+    name: "boulgour complet",
+    productsBySlug: [
       "chickly"
     ]
   },
   {
-    "id": createId(),
-    "name": "mais",
-    "product": [
+    name: "mais",
+    productsBySlug: [
       "chickly",
       "shrimpy"
     ]
   },
   {
-    "id": createId(),
-    "name": "carotte rapé",
-    "product": [
+    name: "carotte rapé",
+    productsBySlug: [
       "chickly",
       "shrimpy"
     ]
   },
   {
-    "id": createId(),
-    "name": "concombre",
-    "product": [
+    name: "concombre",
+    productsBySlug: [
       "chickly",
       "shrimpy"
     ]
   },
   {
-    "id": createId(),
-    "name": "tomate cerise",
-    "product": [
+    name: "tomate cerise",
+    productsBySlug: [
       "chickly",
       "shrimpy"
     ]
   },
   {
-    "id": createId(),
-    "name": "fromage blanc",
-    "product": [
+    name: "fromage blanc",
+    productsBySlug: [
       "chickly",
       "shrimpy"
     ]
   },
   {
-    "id": createId(),
-    "name": "crevette",
-    "product": [
+    name: "crevette",
+    productsBySlug: [
       "shrimpy"
     ]
   },
   {
-    "id": createId(),
-    "name": "quinoa",
-    "product": [
+    name: "quinoa",
+    productsBySlug: [
       "shrimpy"
     ]
   },
   {
-    "id": createId(),
-    "name": "pain brioché complet maison",
-    "product": [
+    name: "pain brioché complet maison",
+    productsBySlug: [
       "tunny"
     ]
   },
   {
-    "id": createId(),
-    "name": "fromage frais",
-    "product": [
+    name: "fromage frais",
+    productsBySlug: [
       "tunny"
     ]
   },
   {
-    "id": createId(),
-    "name": "thon",
-    "product": [
+    name: "thon",
+    productsBySlug: [
       "tunny"
     ]
   },
   {
-    "id": createId(),
-    "name": "gingembre",
-    "product": [
-      "gingy shot carotte",
-      "gingy shot lemon"
+    name: "gingembre",
+    productsBySlug: [
+      "gingy-shot-carotte",
+      "gingy-shot-lemon"
     ]
   },
   {
-    "id": createId(),
-    "name": "pomme",
-    "product": [
-      "gingy shot carotte",
-      "gingy shot lemon"
+    name: "pomme",
+    productsBySlug: [
+      "gingy-shot-carotte",
+      "gingy-shot-lemon"
     ]
   },
   {
-    "id": createId(),
-    "name": "citron",
-    "product": [
-      "gingy shot carotte",
-      "gingy shot lemon"
+    name: "citron",
+    productsBySlug: [
+      "gingy-shot-carotte",
+      "gingy-shot-lemon"
     ]
   },
   {
-    "id": createId(),
-    "name": "carotte",
-    "product": [
-      "gingy shot carotte"
+    name: "carotte",
+    productsBySlug: [
+      "gingy-shot-carotte"
     ]
   },
   {
-    "id": createId(),
-    "name": "orange",
-    "product": [
-      "gingy shot carotte"
+    name: "orange",
+    productsBySlug: [
+      "gingy-shot-carotte"
     ]
   }
 ]
