@@ -1,37 +1,27 @@
+import Image from "next/image"
+import Link from "next/link"
+
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-import type {
-  HeroContent,
-  ImageRef,
-} from "../../../design/units/homepage/data-contract"
+import type { HeroContent, HomeImage } from "@/data/homepage"
 
 import { ScrollHint } from "../ScrollHint"
 
 /** Hero homepage : sombre en mobile/tablet (`.dark`), clair en desktop `xl:`. */
 
-// mock : données via server-builder
-const HERO: HeroContent = {
-  image: {
-    url: "https://placehold.co/1200x920",
-    alt: "Mousse au chocolat onctueuse dans un bol, cuillère en bambou posée dessus, pépites de chocolat éparpillées autour",
-    width: 1200,
-    height: 920,
-  },
-}
+const DISCOVER_HREF = "/boutique"
+const QUIZ_HREF = "/quiz"
 
-function HeroImage({ image }: { image: ImageRef }) {
+function HeroImage({ image }: { image: HomeImage }) {
   return (
-    <div className="hidden min-w-0 xl:block">
-      {/* mock : next/image via server-builder */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+    <div className="relative hidden min-w-0 xl:-rotate-3 xl:overflow-hidden xl:rounded-lg xl:shadow-hero-image xl:block xl:h-108 xl:w-xl">
+      <Image
         src={image.url}
         alt={image.alt}
-        width={image.width}
-        height={image.height}
-        className="h-auto w-full max-w-149.25 -rotate-3 rounded-lg object-cover shadow-hero-image"
+        fill
+        className="object-cover object-center"
       />
     </div>
   )
@@ -63,32 +53,40 @@ function HeroCopy({ headingId, outlineCtaClassName }: HeroCopyProps) {
         </span>
       </p>
 
-      {/* TODO(logic-builder): navigation des 2 CTA */}
       <div className="flex flex-col gap-4 md:flex-row xl:gap-6">
-        <Button
-          variant="primary"
-          size="brand"
-          fullWidth
-          trailingIcon={<ArrowRightIcon className="hidden size-5 md:block" />}
-          className="pr-5 md:w-auto md:pr-4 dark:bg-chart-1 dark:hover:bg-chart-1/80"
+        <Link
+          href={DISCOVER_HREF}
+          className={cn(
+            buttonVariants({ variant: "primary", size: "brand" }),
+            "w-full pr-5 md:w-auto md:pr-4 dark:bg-chart-1 dark:hover:bg-chart-1/80"
+          )}
         >
           Découvrir les Snacks
-        </Button>
-        <Button
-          variant="outline"
-          size="brand"
-          fullWidth
-          className={cn("md:w-auto", outlineCtaClassName)}
+          <span data-icon="inline-end" className="inline-flex shrink-0">
+            <ArrowRightIcon className="hidden size-5 md:block" />
+          </span>
+        </Link>
+        <Link
+          href={QUIZ_HREF}
+          className={cn(
+            buttonVariants({ variant: "outline", size: "brand" }),
+            "w-full md:w-auto",
+            outlineCtaClassName
+          )}
         >
           Faire le quiz
-        </Button>
+        </Link>
       </div>
     </div>
   )
 }
 
-export function HeroSection() {
-  const { image } = HERO
+interface HeroSectionProps {
+  hero: HeroContent
+}
+
+export function HeroSection({ hero }: HeroSectionProps) {
+  const { image } = hero
 
   return (
     <section
@@ -97,11 +95,12 @@ export function HeroSection() {
     >
       {/* fond + overlay brun — mobile/tablet ; `.dark` résout `--background` en brun */}
       <div className="dark absolute inset-0 xl:hidden">
-        {/* mock : next/image via server-builder */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={image.url}
           alt={image.alt}
+          fill
+          priority
+          sizes="100vw"
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-linear-to-b from-transparent to-background/85 md:from-background/50 md:via-transparent md:to-background" />
