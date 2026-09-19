@@ -1,10 +1,5 @@
 import { SectionHeading } from "@/components/SectionHeading"
-import type { Partner } from "../../../design/units/homepage/data-contract"
-
-// PartnersSection — « Ils ont choisi SANS+ », reçoit la liste triée par `position`.
-// Bande de partenaires = défilement horizontal infini en CSS pur (utilitaire
-// `animate-marquee` + keyframes `marquee` définis dans globals.css).
-// TODO(logic-builder): vitesse / nombre d'items / pause selon données — Phase 2.
+import type { HomePartner } from "@/data/homepage"
 
 const HEADING_TITLE = "Ils ont choisi SANS+"
 const HEADING_SUBTITLE = "Retrouvez nos produits chez nos partenaires de confiance"
@@ -26,10 +21,6 @@ function PartnerItem({
   return (
     <li
       aria-hidden={ariaHidden || undefined}
-      // `shrink-0` : item d'une bande `flex-nowrap`.
-      // `pr-8 md:pr-24` : espacement porté par CHAQUE item (y compris le dernier)
-      // pour que `translateX(-50%)` retombe pile sur le début de la 2ᵉ copie
-      // → couture sans décalage (voir Notes du composant).
       className="flex shrink-0 flex-col items-center gap-1 pr-8 text-center md:pr-24"
     >
       <h3 className="text-xl font-semibold leading-6.5 text-foreground md:text-2xl md:leading-7.75">
@@ -44,10 +35,19 @@ function PartnerItem({
 
 export interface PartnersSectionProps {
   /** Liste complète des partenaires, triée par `position`. */
-  partners: Partner[]
+  partners: HomePartner[]
 }
 
 export function PartnersSection({ partners }: PartnersSectionProps) {
+  // Pas de partenaires publiés → pas de section (évite un heading orphelin).
+  if (partners.length === 0) return null
+
+  const half =
+    partners.length >= 4
+      ? partners
+      : Array.from({ length: Math.ceil(4 / partners.length) }, () => partners).flat()
+  const track = [...half, ...half]
+
   return (
     <section
       aria-label="Nos partenaires"
@@ -62,12 +62,12 @@ export function PartnersSection({ partners }: PartnersSectionProps) {
 
       <div className="-mx-5 self-stretch overflow-hidden md:-mx-8 xl:-mx-39 motion-reduce:overflow-x-auto">
         <ul className="flex w-max animate-marquee hover:paused motion-reduce:animate-none">
-          {[...partners, ...partners].map((partner, i) => (
+          {track.map((partner, i) => (
             <PartnerItem
               key={`${partner.id}-${i}`}
               name={partner.name}
               location={partner.location}
-              aria-hidden={i >= partners.length}
+              aria-hidden={i >= half.length}
             />
           ))}
         </ul>
