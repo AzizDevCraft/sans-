@@ -21,14 +21,13 @@ interface NavCardData {
   className?: string
 }
 
-// TODO(logic-builder): destinations des cartes non spécifiées
 const NAV_CARDS: readonly NavCardData[] = [
   {
     icon: Panier,
     title: "Boutique",
     description: "Explorer tous nos produits et commandez en ligne",
     linkLabel: "Découvrir",
-    href: "#",
+    href: "/boutique",
     tone: "card",
     className: "md:col-span-2",
   },
@@ -37,7 +36,7 @@ const NAV_CARDS: readonly NavCardData[] = [
     title: "Quiz Personnalisé",
     description: "Trouvez les snacks adaptés à vos besoins",
     linkLabel: "Commencer",
-    href: "#",
+    href: "/quiz",
     tone: "card-alt",
   },
   {
@@ -45,7 +44,7 @@ const NAV_CARDS: readonly NavCardData[] = [
     title: "Nos BestSellers",
     description: "Jetez un coup d'œil sur notre trio gagnant",
     linkLabel: "En savoir plus",
-    href: "#",
+    href: "/quiz",
     tone: "card",
   },
 ]
@@ -77,7 +76,7 @@ function NavCard({
   return (
     <article
       className={cn(
-        "flex w-full flex-col items-start gap-4 rounded-xl px-7 py-6 md:gap-8 md:p-8 xl:min-w-0 xl:flex-1",
+        "group flex w-full flex-col items-start gap-4 rounded-xl px-7 py-6 md:gap-8 md:p-8 xl:min-w-0 xl:flex-1",
         toneCardClasses[tone],
         className
       )}
