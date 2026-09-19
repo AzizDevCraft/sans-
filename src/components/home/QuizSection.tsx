@@ -1,8 +1,11 @@
+import Link from "next/link"
+
 import QstMark from "@/components/icons/qstMark"
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon"
 import { IconBadge } from "@/components/IconBadge"
 import { SectionHeading } from "@/components/SectionHeading"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 const CONTENT = {
   title: "Quel snack vous correspond ?",
@@ -10,6 +13,8 @@ const CONTENT = {
     "Répondez à quelques questions simples et découvrez les produits SANS+ adaptés à votre style de vie et vos objectifs.",
   ctaLabel: "Commencez le Quiz",
 } as const
+
+const QUIZ_HREF = "/quiz"
 
 function QuizCTA() {
   return (
@@ -32,16 +37,18 @@ function QuizCTA() {
         className="w-full gap-4 md:max-w-191 xl:max-w-200"
       />
 
-      {/* TODO(logic-builder): navigation vers le quiz */}
-      <Button
-        variant="primary"
-        size="brand"
-        fullWidth
-        trailingIcon={<ArrowRightIcon className="size-5" />}
-        className="w-full md:w-auto"
+      <Link
+        href={QUIZ_HREF} // route pas encore créér c pour ça que TS n'est pas content
+        className={cn(
+          buttonVariants({ variant: "primary", size: "brand" }),
+          "w-full md:w-auto"
+        )}
       >
         {CONTENT.ctaLabel}
-      </Button>
+        <span data-icon="inline-end" className="inline-flex shrink-0">
+          <ArrowRightIcon className="size-5" />
+        </span>
+      </Link>
     </div>
   )
 }
