@@ -5,7 +5,7 @@ import type { HomeCategory } from "@/data/homepage"
 
 import { cn } from "@/lib/utils"
 import { SectionHeading } from "@/components/SectionHeading"
-import ArrowRightIcon from "@/components/icons/ArrowRightIcon"
+import { ArrowLink } from "@/components/ArrowLink"
 
 const HEADING_SUBTITLE_TEXT =
   "Découvrez nos gammes de produits pensées pour tous vos moments"
@@ -51,10 +51,7 @@ function CategoryCard({ category, size = "sm" }: CategoryCardProps) {
         <p className="leading-6.5 text-muted-foreground lg:text-xl lg:leading-7.5 xl:text-base xl:leading-6.5">
           {category.tagline}
         </p>
-        <span className="hidden origin-left items-center gap-2 p-1 font-semibold text-foreground transition-all duration-200 xl:inline-flex xl:group-hover:scale-105 xl:group-hover:gap-3">
-          Explorer
-          <ArrowRightIcon className="size-5 shrink-0" />
-        </span>
+        <ArrowLink className="hidden xl:inline-flex">Explorer</ArrowLink>
       </div>
 
 
