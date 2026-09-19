@@ -1,11 +1,10 @@
-import Link from "next/link"
+import type { Route } from "next"
 
 import QstMark from "@/components/icons/qstMark"
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon"
 import { IconBadge } from "@/components/IconBadge"
 import { SectionHeading } from "@/components/SectionHeading"
-import { buttonVariants } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { ButtonLink } from "@/components/ui/button-link"
 
 const CONTENT = {
   title: "Quel snack vous correspond ?",
@@ -14,7 +13,9 @@ const CONTENT = {
   ctaLabel: "Commencez le Quiz",
 } as const
 
-const QUIZ_HREF = "/quiz"
+// `/quiz` n'existe pas encore comme route → `typedRoutes` le refuse tant que
+// `src/app/quiz/` n'existe pas.
+const QUIZ_HREF = "/quiz" as Route
 
 function QuizCTA() {
   return (
@@ -37,18 +38,16 @@ function QuizCTA() {
         className="w-full gap-4 md:max-w-191 xl:max-w-200"
       />
 
-      <Link
-        href={QUIZ_HREF} // route pas encore créér c pour ça que TS n'est pas content
-        className={cn(
-          buttonVariants({ variant: "primary", size: "brand" }),
-          "w-full md:w-auto"
-        )}
+      <ButtonLink
+        href={QUIZ_HREF}
+        variant="primary"
+        size="brand"
+        hoverEffect="arrow"
+        trailingIcon={<ArrowRightIcon className="size-5" />}
+        className="w-full md:w-auto"
       >
         {CONTENT.ctaLabel}
-        <span data-icon="inline-end" className="inline-flex shrink-0">
-          <ArrowRightIcon className="size-5" />
-        </span>
-      </Link>
+      </ButtonLink>
     </div>
   )
 }

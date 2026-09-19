@@ -1,8 +1,8 @@
+import type { Route } from "next"
 import Image from "next/image"
-import Link from "next/link"
 
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon"
-import { buttonVariants } from "@/components/ui/button"
+import { ButtonLink } from "@/components/ui/button-link"
 import { cn } from "@/lib/utils"
 
 import type { HeroContent, HomeImage } from "@/data/homepage"
@@ -12,7 +12,9 @@ import { ScrollHint } from "../ScrollHint"
 /** Hero homepage : sombre en mobile/tablet (`.dark`), clair en desktop `xl:`. */
 
 const DISCOVER_HREF = "/boutique"
-const QUIZ_HREF = "/quiz"
+// `/quiz` n'existe pas encore comme route (contrairement à `/boutique`) →
+// `typedRoutes` le refuse tant que `src/app/quiz/` n'existe pas.
+const QUIZ_HREF = "/quiz" as Route
 
 function HeroImage({ image }: { image: HomeImage }) {
   return (
@@ -54,28 +56,25 @@ function HeroCopy({ headingId, outlineCtaClassName }: HeroCopyProps) {
       </p>
 
       <div className="flex flex-col gap-4 md:flex-row xl:gap-6">
-        <Link
+        <ButtonLink
           href={DISCOVER_HREF}
-          className={cn(
-            buttonVariants({ variant: "primary", size: "brand" }),
-            "w-full pr-5 md:w-auto md:pr-4 dark:bg-chart-1 dark:hover:bg-chart-1/80"
-          )}
+          variant="primary"
+          size="brand"
+          hoverEffect="arrow"
+          trailingIcon={<ArrowRightIcon className="hidden size-5 xl:block" />}
+          className="w-full pr-5 md:w-auto md:pr-4 dark:bg-chart-1 dark:hover:bg-chart-1/80"
         >
           Découvrir les Snacks
-          <span data-icon="inline-end" className="inline-flex shrink-0">
-            <ArrowRightIcon className="hidden size-5 md:block" />
-          </span>
-        </Link>
-        <Link
+        </ButtonLink>
+        <ButtonLink
           href={QUIZ_HREF}
-          className={cn(
-            buttonVariants({ variant: "outline", size: "brand" }),
-            "w-full md:w-auto",
-            outlineCtaClassName
-          )}
+          variant="outline"
+          size="brand"
+          hoverEffect="flip"
+          className={cn("w-full md:w-auto", outlineCtaClassName)}
         >
           Faire le quiz
-        </Link>
+        </ButtonLink>
       </div>
     </div>
   )

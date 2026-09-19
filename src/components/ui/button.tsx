@@ -50,15 +50,16 @@ const buttonVariants = cva(
   }
 )
 
-type ButtonProps = ButtonPrimitive.Props &
-  VariantProps<typeof buttonVariants> & {
-    /** Étire le bouton sur toute la largeur du parent (hero + quiz sur mobile). */
-    fullWidth?: boolean
-    /** Icône affichée après le label (ex. `<ArrowRightIcon />`). Taille pilotée
-     *  par la `size` ; passer `className="size-4"` sur l'icône pour le cas 16px
-     *  (cartes navigation mobile). */
-    trailingIcon?: React.ReactNode
-  }
+type ButtonVariantProps = VariantProps<typeof buttonVariants> & {
+  /** Étire le bouton sur toute la largeur du parent (hero + quiz sur mobile). */
+  fullWidth?: boolean
+  /** Icône affichée après le label (ex. `<ArrowRightIcon />`). Taille pilotée
+   *  par la `size` ; passer `className="size-4"` sur l'icône pour le cas 16px
+   *  (cartes navigation mobile). */
+  trailingIcon?: React.ReactNode
+}
+
+type ButtonProps = ButtonPrimitive.Props & ButtonVariantProps
 
 function Button({
   className,
@@ -90,4 +91,4 @@ function Button({
 }
 
 export { Button, buttonVariants }
-export type { ButtonProps }
+export type { ButtonProps, ButtonVariantProps }
