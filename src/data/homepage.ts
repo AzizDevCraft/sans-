@@ -126,7 +126,7 @@ export async function getHomeCategories(): Promise<HomeCategory[]> {
       name: cat.name,
       tagline: cat.tagline ?? "",
       image: toHomeImage(cat.image),
-      href: `/boutique/${cat.slug}`,
+      href: `/boutique?category=${cat.slug}`,
       // `order` est nullable : catégorie sans ordre explicite → reléguée en fin de liste.
       position: cat.order ?? categories.length + index + 1,
     }))
