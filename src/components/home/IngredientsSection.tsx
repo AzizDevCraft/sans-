@@ -1,5 +1,7 @@
 import type { ComponentType, SVGProps } from "react"
 
+import Image from "next/image"
+
 import { IconBadge } from "@/components/IconBadge"
 import { SectionHeading } from "@/components/SectionHeading"
 import Amande from "@/components/icons/Amande"
@@ -7,7 +9,7 @@ import CaloriesIcon from "@/components/icons/CaloriesIcon"
 import NoSugar from "@/components/icons/NoSugar"
 import { cn } from "@/lib/utils"
 
-import type { IngredientGalleryImage } from "../../../design/units/homepage/data-contract"
+import type { HomeGalleryImage } from "@/data/homepage"
 
 const DESCRIPTION =
   "Flocons d'avoine, dattes, amandes, graines naturelles. Pas d'additifs cachés. Pas de noms scientifiques. Juste des aliments que vous connaissez, assemblés avec soin."
@@ -40,42 +42,6 @@ const INGREDIENT_ITEMS: readonly IngredientItemData[] = [
   },
 ]
 
-// mock — grille dynamique fournie via le contrat `IngredientGalleryImage[]` (server-builder)
-const GALLERY_IMAGES: readonly IngredientGalleryImage[] = [
-  {
-    id: "ingredient-gallery-0",
-    position: 0,
-    url: "https://placehold.co/530x730",
-    alt: "Sandwich complet garni, tenu à la main sur fond jaune",
-    width: 530,
-    height: 730,
-  },
-  {
-    id: "ingredient-gallery-1",
-    position: 1,
-    url: "https://placehold.co/530x545",
-    alt: "Bol de pâte de dattes avec pépites de chocolat et cuillère en bois",
-    width: 530,
-    height: 545,
-  },
-  {
-    id: "ingredient-gallery-2",
-    position: 2,
-    url: "https://placehold.co/530x545",
-    alt: "Trois gobelets de snacks SANS+ tenus à la main",
-    width: 530,
-    height: 545,
-  },
-  {
-    id: "ingredient-gallery-3",
-    position: 3,
-    url: "https://placehold.co/530x730",
-    alt: "Bouchée énergétique tenue au-dessus d'une pile de bouchées sur fond vert",
-    width: 530,
-    height: 730,
-  },
-]
-
 function IngredientItem({ icon: Icon, tone, title, subtitle }: IngredientItemData) {
   return (
     <li className="flex items-center gap-4 md:gap-6">
@@ -100,11 +66,14 @@ const TILE_SHAPE = {
   short: "aspect-square",
 } as const
 
+const GALLERY_TILE_SIZES =
+  "(min-width: 1280px) 265px, (min-width: 744px) calc(50vw - 44px), calc(50vw - 30px)"
+
 function GalleryTile({
   image,
   shape,
 }: {
-  image: IngredientGalleryImage
+  image: HomeGalleryImage
   shape: keyof typeof TILE_SHAPE
 }) {
   return (
@@ -114,11 +83,11 @@ function GalleryTile({
         TILE_SHAPE[shape]
       )}
     >
-      {/* mock — next/image via server-builder */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={image.url}
         alt={image.alt}
+        fill
+        sizes={GALLERY_TILE_SIZES}
         className="absolute inset-0 h-full w-full object-cover"
       />
     </div>
@@ -130,7 +99,7 @@ function IngredientImageGrid({
   images,
   className,
 }: {
-  images: readonly IngredientGalleryImage[]
+  images: readonly HomeGalleryImage[]
   className?: string
 }) {
   const sorted = [...images].sort((a, b) => a.position - b.position)
@@ -158,7 +127,11 @@ function IngredientImageGrid({
   )
 }
 
-export function IngredientsSection() {
+interface IngredientsSectionProps {
+  ingredientGallery: HomeGalleryImage[]
+}
+
+export function IngredientsSection({ ingredientGallery }: IngredientsSectionProps) {
   return (
     <section className="flex flex-col items-start gap-8 rounded-tr-xl bg-background px-5 pt-3 pb-7 md:rounded-tr-none md:px-8 xl:min-h-247 xl:flex-row xl:items-center xl:justify-center xl:gap-13">
       <div className="contents xl:flex xl:w-full xl:min-w-0 xl:max-w-130 xl:flex-col xl:gap-8">
@@ -177,7 +150,7 @@ export function IngredientsSection() {
       </div>
 
       <IngredientImageGrid
-        images={GALLERY_IMAGES}
+        images={ingredientGallery}
         className="order-1 xl:order-0"
       />
     </section>
