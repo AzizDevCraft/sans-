@@ -1,4 +1,3 @@
-import type { Route } from "next"
 import Image from "next/image"
 
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon"
@@ -12,9 +11,7 @@ import { ScrollHint } from "../ScrollHint"
 /** Hero homepage : sombre en mobile/tablet (`.dark`), clair en desktop `xl:`. */
 
 const DISCOVER_HREF = "/boutique"
-// `/quiz` n'existe pas encore comme route (contrairement à `/boutique`) →
-// `typedRoutes` le refuse tant que `src/app/quiz/` n'existe pas.
-const QUIZ_HREF = "/quiz" as Route
+const QUIZ_HREF = "/quiz"
 
 function HeroImage({ image }: { image: HomeImage }) {
   return (
@@ -90,6 +87,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
   return (
     <section
       aria-labelledby="hero-heading"
+      data-hero-boundary
       className="relative flex min-h-svh flex-col items-center justify-end overflow-hidden px-5 md:px-0 md:pb-8 xl:min-h-200 xl:justify-center xl:bg-linear-to-b xl:from-card-alt xl:to-background xl:pb-0 xl:mx-auto"
     >
       {/* fond + overlay brun — mobile/tablet ; `.dark` résout `--background` en brun */}

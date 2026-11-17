@@ -1,5 +1,3 @@
-import type { Route } from "next"
-
 import QstMark from "@/components/icons/qstMark"
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon"
 import { IconBadge } from "@/components/IconBadge"
@@ -13,9 +11,7 @@ const CONTENT = {
   ctaLabel: "Commencez le Quiz",
 } as const
 
-// `/quiz` n'existe pas encore comme route → `typedRoutes` le refuse tant que
-// `src/app/quiz/` n'existe pas.
-const QUIZ_HREF = "/quiz" as Route
+const QUIZ_HREF = "/quiz"
 
 function QuizCTA() {
   return (
