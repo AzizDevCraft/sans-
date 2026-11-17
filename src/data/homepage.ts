@@ -10,6 +10,7 @@ import gallery2 from "@/assets/homepage/gallery2.jpg"
 import gallery3 from "@/assets/homepage/gallery3.jpg"
 import heroImg from "@/assets/homepage/hero-img.jpg"
 import heroOgImg from "@/assets/homepage/hero-img-og.jpg"
+import { capitalize } from "@/lib/utils"
 
 export interface HomeImage {
   url: string
@@ -129,7 +130,7 @@ export async function getHomeCategories(): Promise<HomeCategory[]> {
     .map((cat, index) => ({
       id: cat.id,
       slug: cat.slug,
-      name: cat.name,
+      name: capitalize(cat.name),
       tagline: cat.tagline ?? "",
       image: toHomeImage(cat.image),
       href: `/boutique?category=${cat.slug}`,
