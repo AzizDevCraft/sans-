@@ -1,6 +1,7 @@
 import "server-only"
 
 import type { StaticImageData } from "next/image"
+import { cacheLife, cacheTag } from "next/cache"
 
 import prisma from "@/lib/prisma"
 
@@ -115,6 +116,11 @@ export function getIngredientGallery(): HomeGalleryImage[] {
 }
 
 export async function getHomeCategories(): Promise<HomeCategory[]> {
+
+  "use cache"
+  cacheLife ("max")
+  cacheTag ("categories")
+
   const categories = await prisma.category.findMany({
     select: {
       id: true,
@@ -142,20 +148,29 @@ export async function getHomeCategories(): Promise<HomeCategory[]> {
 
 
 export async function getPartners(): Promise<HomePartner[]> {
-  const Distributors = await prisma.distributor.findMany ({
+
+  "use cache"
+  cacheLife ("max")
+  cacheTag ("distributors")
+
+  const distributors = await prisma.distributor.findMany ({
     select: {
       id: true,
-      name: true, 
-      zone: true, 
+      name: true,
+      zone: true,
       position: true
-    }
+    },
+    orderBy: [{ position: { sort: "asc", nulls: "last" } }, { name: "asc" }, { id: "asc" }],
   })
-  return Distributors.map((distributor, index) => ({
-    id: distributor.id,
-    name: distributor.name,
-    location: distributor.zone.join(", "),
-    position: index + 1,
-  }))
+  return distributors
+    .map((distributor, index) => ({
+      id: distributor.id,
+      name: distributor.name,
+      location: distributor.zone.join(", "),
+      // `position` est nullable : distributeur sans ordre explicite → relégué en fin de liste.
+      position: distributor.position ?? distributors.length + index + 1,
+    }))
+    .sort((a, b) => a.position - b.position)
 }
 
 /** Agrégat consommé par `src/app/page.tsx`. */
