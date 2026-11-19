@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
+import heroOgImg from "@/assets/homepage/hero-img-og.jpg";
+import { Footer } from "@/components/layout/Footer";
+import { SiteChrome } from "@/components/layout/SiteChrome";
+
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
@@ -28,9 +32,18 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     locale: "fr_FR",
     type: "website",
+    images: [
+      {
+        url: heroOgImg.src,
+        width: heroOgImg.width,
+        height: heroOgImg.height,
+        alt: SITE_NAME,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    images: [heroOgImg.src],
   },
 };
 
@@ -40,7 +53,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="fr"
       className={`${poppins.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SiteChrome>{children}</SiteChrome>
+        <Footer />
+      </body>
     </html>
   );
 }
