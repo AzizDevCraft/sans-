@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 import { Logo } from "@/components/Logo"
 import Panier from "@/components/icons/panier"
 import Profile from "@/components/icons/profile"
-import MenuIcon from "@/components/icons/MenuIcon"
+import HamburgerMenuIcon from "../icons/HamburgerMenuIcon"
 
 export interface NavLinkItem {
   label: string
@@ -64,7 +64,7 @@ export function NavBar({ variant, hasHero, links, onMenuClick }: NavBarProps) {
         <div className="flex items-center gap-4 md:hidden">
           <CartButton iconClassName={cn(onHero ? "text-muted" : "text-muted-foreground")} />
           <button type="button" onClick={onMenuClick} aria-label="Ouvrir le menu">
-            <MenuIcon aria-hidden="true" className={cn("size-9", onHero ? "text-muted" : "text-muted-foreground")} />
+            <HamburgerMenuIcon aria-hidden="true" className={cn("size-9", onHero ? "text-muted" : "text-muted-foreground")} />
           </button>
         </div>
 
