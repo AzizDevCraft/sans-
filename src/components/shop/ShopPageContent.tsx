@@ -11,13 +11,6 @@ const FILTER_PILL_LABELS: Record<string, string> = {
   shots: "Shots",
 }
 
-// Eyebrow statique par slug ; slug absent = pas d'eyebrow.
-const SECTION_EYEBROWS: Record<string, string> = {
-  snacks: "sucré",
-  meals: "repas complet",
-  shots: "shot énergisant",
-}
-
 export async function ShopPageContent() {
   const { categories } = await getShopData()
   const totalProductCount = categories.reduce((sum, c) => sum + c.products.length, 0)
@@ -41,7 +34,6 @@ export async function ShopPageContent() {
           content: (
             <ProductSection
               category={category}
-              eyebrow={SECTION_EYEBROWS[category.slug]}
               tone={index % 2 === 1 ? "alt" : "default"}
             />
           ),

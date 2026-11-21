@@ -7,27 +7,29 @@ import { cn } from "@/lib/utils"
 
 export interface ProductSectionProps {
   category: ShopCategory
-  eyebrow?: string
   tone: ProductTone
 }
 
 // Titre/sous-titre affichés, par slug ; slug absent = valeurs de la base.
-const SECTION_COPY: Partial<Record<string, { title: string; subtitle: string }>> = {
+const SECTION_COPY: Partial<Record<string, {eyebrow: string, title: string; subtitle: string }>> = {
   snacks: {
+    eyebrow: "sucré",
     title: "Snacks Protéinés Sucrés",
     subtitle: "Energy balls, proteine barres, cookies et plus encore pour vos envies sucrées",
   },
   meals: {
+    eyebrow: "repas complet",
     title: "Bowls Equilibrés",
     subtitle: "Repas complet et nutritifs pour votre déjeuner",
   },
   shots: {
+    eyebrow: "shot énergisant",
     title: "Ginger Shots",
     subtitle: "Énergie naturelle qui réveille votre journée",
   },
 }
 
-export function ProductSection({ category, eyebrow, tone }: ProductSectionProps) {
+export function ProductSection({ category, tone }: ProductSectionProps) {
   const copy = SECTION_COPY[category.slug]
 
   return (
@@ -42,11 +44,10 @@ export function ProductSection({ category, eyebrow, tone }: ProductSectionProps)
           : "bg-background"
       )}
     >
-      {/* gap-15.75 = 63px, valeur Figma hors échelle base-4 conservée */}
       <div className="flex w-full flex-col items-start gap-8 md:gap-10 xl:mx-auto xl:max-w-282 xl:gap-16">
         <SectionHeading
           align="start"
-          eyebrow={eyebrow}
+          eyebrow={copy?.eyebrow}
           title={copy?.title ?? category.name}
           subtitle={copy?.subtitle ?? category.tagline}
           className="px-5 md:px-0"
