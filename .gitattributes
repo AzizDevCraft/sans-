@@ -1,0 +1,2 @@
+# Migrations Prisma toujours en LF : un passage en CRLF changerait leur checksum.
+prisma/migrations/** text eol=lf
