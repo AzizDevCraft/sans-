@@ -3,29 +3,31 @@ export type MediaSeed = {
   name: string
   alt: string
   productSlug: string | null
+  /** Ordre parmi les images du produit (0 = couverture). Omis pour les images sans produit. */
+  position?: number
 }
 
 export const media: MediaSeed[] = [
   // ── Produits — mapping sûr ────────────────────────────────────────────────
-  { url: "/brown.jpg", name: "brown.jpg", alt: "Fudgy - Brownies Protéiné", productSlug: "fudgy" },
-  { url: "/crunchies.jpg", name: "crunchies.jpg", alt: "Crunchies - Protéine Bar", productSlug: "crunchies" },
-  { url: "/doughies.jpg", name: "doughies.jpg", alt: "Doughies - Cookie Dough Balls", productSlug: "doughies" },
-  { url: "/Bowls-Poulet.jpg", name: "Bowls-Poulet.jpg", alt: "Chickly - Bowl Poulet & Boulgour", productSlug: "chickly" },
-  { url: "/Bowls-Poulet1.jpg", name: "Bowls-Poulet1.jpg", alt: "Chickly - Bowl Poulet & Boulgour", productSlug: "chickly" },
-  { url: "/bowls-3.jpg", name: "bowls-3.jpg", alt: "Shrimpy - Bowl Crevette & Quinoa", productSlug: "shrimpy" },
-  { url: "/bowls-4.jpg", name: "bowls-4.jpg", alt: "Shrimpy - Bowl Crevette & Quinoa", productSlug: "shrimpy" },
-  { url: "/mousseAuChocolat-1.jpg", name: "mousseAuChocolat-1.jpg", alt: "Good Mouse - mousse au chocholat protéiné", productSlug: "good-mousse" },
-  { url: "/mousseAuChocolat-2.jpg", name: "mousseAuChocolat-2.jpg", alt: "Good Mouse - mousse au chocholat protéiné", productSlug: "good-mousse" },
-  { url: "/mousseAuChocolat-3.jpg", name: "mousseAuChocolat-3.jpg", alt: "Good Mouse - mousse au chocholat protéiné", productSlug: "good-mousse" },
-  { url: "/power-Pops-2.jpg", name: "power-Pops-2.jpg", alt: "Power pops - Brownies Balls Protéinées", productSlug: "power-pops" },
-  { url: "/thuna-1.jpg", name: "thuna-1.jpg", alt: "Tunny - Sandwich au thon", productSlug: "tunny" },
-  { url: "/thuna-2.jpg", name: "thuna-2.jpg", alt: "Tunny - Sandwich au thon", productSlug: "tunny" },
+  { url: "/brown.jpg", name: "brown.jpg", alt: "Fudgy - Brownies Protéiné", productSlug: "fudgy", position: 0 },
+  { url: "/crunchies.jpg", name: "crunchies.jpg", alt: "Crunchies - Protéine Bar", productSlug: "crunchies", position: 0 },
+  { url: "/doughies.jpg", name: "doughies.jpg", alt: "Doughies - Cookie Dough Balls", productSlug: "doughies", position: 0 },
+  { url: "/Bowls-Poulet.jpg", name: "Bowls-Poulet.jpg", alt: "Chickly - Bowl Poulet & Boulgour", productSlug: "chickly", position: 0 },
+  { url: "/Bowls-Poulet1.jpg", name: "Bowls-Poulet1.jpg", alt: "Chickly - Bowl Poulet & Boulgour", productSlug: "chickly", position: 1 },
+  { url: "/bowls-3.jpg", name: "bowls-3.jpg", alt: "Shrimpy - Bowl Crevette & Quinoa", productSlug: "shrimpy", position: 0 },
+  { url: "/bowls-4.jpg", name: "bowls-4.jpg", alt: "Shrimpy - Bowl Crevette & Quinoa", productSlug: "shrimpy", position: 1 },
+  { url: "/mousseAuChocolat-1.jpg", name: "mousseAuChocolat-1.jpg", alt: "Good Mouse - mousse au chocholat protéiné", productSlug: "good-mousse", position: 0 },
+  { url: "/mousseAuChocolat-2.jpg", name: "mousseAuChocolat-2.jpg", alt: "Good Mouse - mousse au chocholat protéiné", productSlug: "good-mousse", position: 1 },
+  { url: "/mousseAuChocolat-3.jpg", name: "mousseAuChocolat-3.jpg", alt: "Good Mouse - mousse au chocholat protéiné", productSlug: "good-mousse", position: 2 },
+  { url: "/power-Pops-2.jpg", name: "power-Pops-2.jpg", alt: "Power pops - Brownies Balls Protéinées", productSlug: "power-pops", position: 0 },
+  { url: "/thuna-1.jpg", name: "thuna-1.jpg", alt: "Tunny - Sandwich au thon", productSlug: "tunny", position: 0 },
+  { url: "/thuna-2.jpg", name: "thuna-2.jpg", alt: "Tunny - Sandwich au thon", productSlug: "tunny", position: 1 },
 
-  { url: "/gingershot-1.jpg", name: "gingershot-1.jpg", alt: "Gingy Shot - apple lemon & ginger", productSlug: "gingy-shot-lemon" },
-  { url: "/gingershot-2.jpg", name: "gingershot-2.jpg", alt: "Gingy Shot - Sunny carotte orange twist", productSlug: "gingy-shot-carotte" },
-  { url: "/gingershot-3.jpg", name: "gingershot-3.jpg", alt: "Gingy Shot - Sunny carotte orange twist", productSlug: "gingy-shot-carotte" },
-  { url: "/gingershot-4.jpg", name: "gingershot-4.jpg", alt: "Gingy Shot - apple lemon & ginger", productSlug: "gingy-shot-lemon" },
-  { url: "/gingershot-5.jpg", name: "gingershot-5.jpg", alt: "Gingy Shot - Sunny carotte orange twist", productSlug: "gingy-shot-carotte" },
+  { url: "/gingershot-1.jpg", name: "gingershot-1.jpg", alt: "Gingy Shot - apple lemon & ginger", productSlug: "gingy-shot-lemon", position: 0 },
+  { url: "/gingershot-2.jpg", name: "gingershot-2.jpg", alt: "Gingy Shot - Sunny carotte orange twist", productSlug: "gingy-shot-carotte", position: 0 },
+  { url: "/gingershot-3.jpg", name: "gingershot-3.jpg", alt: "Gingy Shot - Sunny carotte orange twist", productSlug: "gingy-shot-carotte", position: 1 },
+  { url: "/gingershot-4.jpg", name: "gingershot-4.jpg", alt: "Gingy Shot - apple lemon & ginger", productSlug: "gingy-shot-lemon", position: 1 },
+  { url: "/gingershot-5.jpg", name: "gingershot-5.jpg", alt: "Gingy Shot - Sunny carotte orange twist", productSlug: "gingy-shot-carotte", position: 2 },
 
   // ── Non rattachées à un produit ─────────────────────────────────────────
   { url: "/healthyShot.jpg", name: "healthyShot.jpg", alt: "ginger shots", productSlug: null },

@@ -30,8 +30,8 @@ async function main() {
   for (const m of media) {
     const row = await prisma.media.upsert ({
       where:  { name: m.name },
-      update: { name: m.name },
-      create: { url: m.url, name: m.name , alt: m.alt },
+      update: { name: m.name, position: m.position ?? 0 },
+      create: { url: m.url, name: m.name , alt: m.alt, position: m.position ?? 0 },
       select: { id: true , name: true }
     })
     mediaIdByName.set (row.name, row.id)
@@ -106,8 +106,8 @@ async function main() {
       }
       const row = await prisma.media.upsert ({
         where: { name: m.name },
-        update: { productId },
-        create: { url: m.url, name: m.name , alt: m.alt, productId },
+        update: { productId, position: m.position ?? 0 },
+        create: { url: m.url, name: m.name , alt: m.alt, productId, position: m.position ?? 0 },
         select: { id: true , name: true }
       })
       mediaIdByName.set (row.name, row.id)
