@@ -28,15 +28,17 @@ Source de vérité du cache (Cache Components, Next.js 16). Tenu par `cache-buil
 | Group | Unité | Layer | Regroupe | Pourquoi |
 |---|---|---|---|---|
 | `categories` | `categories:<slug>` (motif réservé, aucune fonction ne le porte) | aucun | Catégories de produits (Category + image Media) | Données catalogue qui changent uniquement par seed/déploiement |
+| `products` | `products:<slug>` (motif réservé, aucune fonction ne le porte) | aucun | Produits de la boutique (Product + images Media du produit) | Données catalogue qui changent uniquement par seed/déploiement. Les images (Media) n'ont pas de groupe propre : elles sont portées par leur entité propriétaire (`categories` pour l'image de catégorie, `products` pour les images de produit) |
 | `distributors` | `distributors:<slug>` (motif réservé, aucune fonction ne le porte) | aucun | Partenaires / distributeurs (Distributor) | S'invalide à l'arrivée, la modification ou la suppression d'un partenaire |
 
-Aucun layer : aucun événement réel n'invalide plusieurs groupes ensemble à ce jour.
+Aucun layer : aucun événement réel n'invalide plusieurs groupes ensemble à ce jour (seed + redéploiement renouvelle tout le cache, pas d'invalidation runtime).
 
 ## Carte des données
 
 | Fonction | Chemin | Chaîne de tags | Profil | Consommée par | Statut | Raison |
 |---|---|---|---|---|---|---|
 | `getHomeCategories` | `src/data/homepage.ts` | `categories` | `max` | `/` (CategorySection) | En cache | Donnée partagée, change uniquement via seed/déploiement |
+| `getShopData` | `src/data/shop.ts` | `categories`, `products` | `max` | `/boutique` (ShopPageContent) | En cache | Donnée partagée (catégories + produits + 1re image), change uniquement via seed/déploiement. Renvoie une liste de catégories contenant des produits : porte le groupe de chaque entité qu'elle contient (`categories` et `products`) |
 | `getPartners` | `src/data/homepage.ts` | `distributors` | `max` | `/` (PartnersSection) | En cache | Donnée partagée, invalidée à l'arrivée d'un partenaire |
 | `getHeroContent` | `src/data/homepage.ts` | aucun | n/a | `/` (HeroSection) | Non caché | Assets statiques importés, pas de DB |
 | `getHeroOgImage` | `src/data/homepage.ts` | aucun | n/a | `/` (metadata) | Non caché | Asset statique importé |
@@ -49,7 +51,8 @@ Aucun layer : aucun événement réel n'invalide plusieurs groupes ensemble à c
 |---|---|---|---|---|---|
 | Création d'un partenaire (Distributor) | Future Server Action de création de partenaire (n'existe pas encore) | `distributors` | `revalidateTag("distributors", "max")` | EN ATTENTE DE BRANCHEMENT (server-builder) | Ajout = tag du groupe. Le visiteur de la homepage ne voit pas sa propre écriture, un délai est acceptable : revalidation stale-while-revalidate, pas `updateTag`. Profil `max` cohérent avec le `cacheLife("max")` de la fonction |
 | Modification / suppression d'un partenaire | Futures actions correspondantes | `distributors` | `revalidateTag("distributors", "max")` | EN ATTENTE DE BRANCHEMENT (server-builder), validée par l'utilisateur | La homepage liste tous les partenaires : la même règle s'applique. Pas d'unité taguée car aucune fonction ne renvoie un partenaire seul |
-| Changement de catégorie (Category / Media) | Aucun : seed ou déploiement | aucun | aucune invalidation runtime | Décision utilisateur | Les catégories ne changent que via seed/déploiement ; un déploiement renouvelle le cache. Tout seed exécuté sur la DB de production DOIT être suivi d'un redéploiement, sinon la homepage reste obsolète jusqu'à la revalidation `max` (30 j). Si une mutation runtime apparaît, ajouter une règle sur `categories` |
+| Changement de catégorie (Category / Media) | Aucun : seed ou déploiement | aucun | aucune invalidation runtime | Décision utilisateur | Les catégories ne changent que via seed/déploiement ; un déploiement renouvelle le cache. Tout seed exécuté sur la DB de production DOIT être suivi d'un redéploiement, sinon la homepage et la boutique restent obsolètes jusqu'à la revalidation `max` (30 j). Le tag `categories` est porté par `getHomeCategories` (`/`) ET `getShopData` (`/boutique`) : la règle couvre les deux pages. Si une mutation runtime apparaît, ajouter une règle sur `categories` |
+| Changement de produit / image de produit (Product / Media) de la boutique | Aucun : seed ou déploiement | aucun | aucune invalidation runtime | Décision utilisateur 2026-11-21 | Les produits et leurs images ne changent que via seed/déploiement, comme les catégories. Tout seed exécuté sur la DB de production DOIT être suivi d'un redéploiement, sinon `/boutique` reste obsolète jusqu'à la revalidation `max` (30 j). Si une mutation runtime apparaît (ajout/suppression : `products` ; modification : `products` tant qu'aucune fonction ne porte `products:<slug>`), ajouter une règle |
 
 ## Carte des pages
 
@@ -58,7 +61,7 @@ Aucun layer : aucun événement réel n'invalide plusieurs groupes ensemble à c
 | `/` | Page entière (statique, ○ au build) | Aucune | Aucune | Données DB en cache (`max`), reste en assets statiques ; aucune lecture de cookies, en-têtes ou paramètres |
 | `/contact` | Page entière (statique, placeholder) | Aucune | Aucune | Aucune donnée, aucune lecture de cookies, en-têtes ou paramètres |
 | `/quiz` | Page entière (statique, placeholder) | Aucune | Aucune | Aucune donnée, aucune lecture de cookies, en-têtes ou paramètres |
-| `/boutique` | Non couverte | Non couverte | Non couverte | Autre fonctionnalité, à traiter dans un Mode A dédié (`src/app/boutique/`, `src/lib/shop/`, `src/data/shop.ts`) |
+| `/boutique` | Page entière : en-tête, filtre et sections produit (données `getShopData` en cache `max`) | `CategoryScrollSync` (client, ne rend rien) : lit `useSearchParams` | `<Suspense fallback={null}>` dans `ShopCatalog` (déjà en place) | Aucune donnée dynamique côté serveur : pas de cookies, en-têtes, session ni `searchParams` serveur. Les sections produit (Server Components) sont hors de la frontière. pas d'`instant = false` (inutile, donnée cachée) |
 
 ## Profils personnalisés
 
@@ -76,3 +79,7 @@ Aucun. Tous les profils utilisés sont intégrés à Next.js (`max`).
 - 2026-11-17 — Règle modification/suppression de partenaire validée par l'utilisateur : passe de PROPOSITION à EN ATTENTE DE BRANCHEMENT (`revalidateTag("distribution:distributors", "max")`).
 - 2026-11-18 — Conventions révisées (décision utilisateur) : trio `"use cache"` + `cacheLife` + `cacheTag` obligatoire ; taxonomie à 2 niveaux par défaut (group, unité `group:<slug>`, slug préféré à l'id) ; layer optionnel, tag autonome ajouté seulement sur besoin réel.
 - 2026-11-18 — Layers `catalog` et `distribution` supprimés (aucun événement ne les visait). `getHomeCategories` : `catalog`, `catalog:categories` → `categories`. `getPartners` : `distribution`, `distribution:distributors` → `distributors`. Règles d'invalidation partenaires : `revalidateTag("distributors", "max")`. Ligne « changement global de couche » retirée.
+- 2026-11-21 — Mode A boutique : group `products` ajouté à la taxonomie (unité `products:<slug>` en motif réservé, pas de layer). Media sans groupe propre (porté par son entité propriétaire).
+- 2026-11-21 — `getShopData` mise en cache : `"use cache"` + `cacheLife("max")` + `cacheTag("categories", "products")`. Requête, types et mapping inchangés.
+- 2026-11-21 — Règle ajoutée : changement produit/média de la boutique = aucune invalidation runtime, seed + redéploiement (décision utilisateur). Règle catégories étendue à `/boutique` (tag `categories` partagé avec `getHomeCategories`).
+- 2026-11-21 — Carte des pages : `/boutique` documentée (statique ; `CategoryScrollSync` sous Suspense existant). `export const instant = false` absent de `page.tsx` à l'état courant, rien à retirer.
