@@ -63,6 +63,8 @@ model Media {
   width     Int?
   height    Int?
   alt       String
+  /// Ordre d'affichage parmi les images d'un produit (0 = couverture). Sans effet pour les images de catégorie/partenaire.
+  position  Int      @default(0)
   createdAt DateTime @default(now())
 
   product   Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
