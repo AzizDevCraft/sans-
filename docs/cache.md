@@ -38,7 +38,7 @@ Aucun layer : aucun événement réel n'invalide plusieurs groupes ensemble à c
 | Fonction | Chemin | Chaîne de tags | Profil | Consommée par | Statut | Raison |
 |---|---|---|---|---|---|---|
 | `getHomeCategories` | `src/data/catalog/categories.ts` | `categories` | `max` | `/` (CategorySection) | En cache | Donnée partagée, change uniquement via seed/déploiement |
-| `getShopData` | `src/data/catalog/shop.ts` | `categories`, `products` | `max` | `/boutique` (ShopPageContent) | En cache | Donnée partagée (catégories + produits + 1re image), change uniquement via seed/déploiement. Renvoie une liste de catégories contenant des produits : porte le groupe de chaque entité qu'elle contient (`categories` et `products`) |
+| `getShopData` | `src/data/catalog/shop.ts` | `categories`, `products` | `max` | `/boutique` (page) | En cache | Donnée partagée (catégories + produits + 1re image), change uniquement via seed/déploiement. Renvoie une liste de catégories contenant des produits : porte le groupe de chaque entité qu'elle contient (`categories` et `products`) |
 | `getPartners` | `src/data/partners/distributors.ts` | `distributors` | `max` | `/` (PartnersSection) | En cache | Donnée partagée, invalidée à l'arrivée d'un partenaire |
 | `getHeroContent` | `src/data/brand/hero.ts` | aucun | n/a | `/` (HeroSection) | Non caché | Assets statiques importés, pas de DB |
 | `getHeroOgImage` | `src/data/brand/hero.ts` | aucun | n/a | `/` (metadata) | Non caché | Asset statique importé |
@@ -83,3 +83,4 @@ Aucun. Tous les profils utilisés sont intégrés à Next.js (`max`).
 - 2026-11-21 — Règle ajoutée : changement produit/média de la boutique = aucune invalidation runtime, seed + redéploiement (décision utilisateur). Règle catégories étendue à `/boutique` (tag `categories` partagé avec `getHomeCategories`).
 - 2026-11-21 — Carte des pages : `/boutique` documentée (statique ; `CategoryScrollSync` sous Suspense existant). `export const instant = false` absent de `page.tsx` à l'état courant, rien à retirer.
 - 2026-11-22 — Réorganisation de la couche data par domaine (aucun changement de cache) : `src/data/homepage.ts` éclaté en `catalog/categories.ts`, `brand/hero.ts`, `brand/gallery.ts`, `partners/distributors.ts` (+ helpers image partagés `src/data/media.ts`) ; `src/data/shop.ts` → `src/data/catalog/shop.ts`. Agrégateur `getHomepageData` supprimé : `src/app/page.tsx` appelle directement les fonctions. Directives, tags et profils inchangés.
+- 2026-11-22 — `/boutique` : `ShopPageContent` supprimé, `src/app/boutique/page.tsx` appelle `getShopData` et compose directement. Aucun changement de cache.

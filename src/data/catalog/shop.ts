@@ -90,7 +90,7 @@ function toShopCategory(row: CategoryWithProductsRow): ShopCategory {
   }
 }
 
-/** Agrégat consommé par `ShopPageContent`. */
+/** Agrégat consommé par `src/app/boutique/page.tsx`. */
 export async function getShopData(): Promise<ShopData> {
   "use cache"
   cacheLife("max")
