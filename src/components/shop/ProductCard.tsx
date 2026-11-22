@@ -5,7 +5,7 @@ import type { ShopProduct } from "@/data/shop"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import CaloriesIcon from "@/components/icons/CaloriesIcon"
-import ProteinIcon from "@/components/icons/ProteinIcon"
+import GymIcon from "../icons/gym-icon"
 
 export type ProductTone = "default" | "alt"
 
@@ -38,7 +38,7 @@ function NutritionRow({
           <span className="text-xs tracking-figma-2">{calories ?? "–"} kcal</span>
         </span>
         <span className="inline-flex items-center gap-1 rounded-full bg-card-alt px-2 py-0.5 text-muted-foreground">
-          <ProteinIcon className="size-4" />
+          <GymIcon className="size-4" />
           <span className="text-xs tracking-figma-2">{proteins} g</span>
         </span>
       </div>
@@ -50,7 +50,7 @@ function NutritionRow({
           <span className="text-base text-muted-foreground">{calories ?? "–"} kcal</span>
         </span>
         <span className="inline-flex items-center gap-1 text-card-foreground">
-          <ProteinIcon className="size-6" />
+          <GymIcon className="size-6" />
           <span className="text-base text-muted-foreground">{proteins}g</span>
         </span>
       </div>
