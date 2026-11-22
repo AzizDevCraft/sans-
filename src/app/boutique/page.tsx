@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { ShopPageContent } from "@/components/shop/ShopPageContent"
+import { ShopPageContent } from "@/features/catalog/components/ShopPageContent"
 
 export const metadata: Metadata = {
   title: "Boutique",

@@ -9,7 +9,7 @@ import CaloriesIcon from "@/components/icons/CaloriesIcon"
 import NoSugar from "@/components/icons/NoSugar"
 import { cn } from "@/lib/utils"
 
-import type { HomeGalleryImage } from "@/data/homepage"
+import type { HomeGalleryImage } from "@/data/brand/gallery"
 
 const DESCRIPTION =
   "Flocons d'avoine, dattes, amandes, graines naturelles. Pas d'additifs cachés. Pas de noms scientifiques. Juste des aliments que vous connaissez, assemblés avec soin."

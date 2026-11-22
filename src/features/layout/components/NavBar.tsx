@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 import { Logo } from "@/components/Logo"
 import Panier from "@/components/icons/panier"
 import Profile from "@/components/icons/profile"
-import HamburgerMenuIcon from "../icons/HamburgerMenuIcon"
+import HamburgerMenuIcon from "@/components/icons/HamburgerMenuIcon"
 
 export interface NavLinkItem {
   label: string

@@ -5,7 +5,7 @@ import type { ReactNode } from "react"
 
 import { usePathname } from "next/navigation"
 
-import { getNavLinks } from "@/lib/nav-links"
+import { getNavLinks } from "../lib/nav-links"
 
 import { MobileMenu } from "./MobileMenu"
 import { NavBar } from "./NavBar"

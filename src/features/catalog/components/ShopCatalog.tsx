@@ -2,9 +2,9 @@
 
 import { Suspense, useLayoutEffect, useState, type ReactNode } from "react"
 
-import { CategoryScrollSync } from "@/components/shop/CategoryScrollSync"
-import { FilterSection } from "@/components/shop/FilterSection"
-import { ALL_FILTER_SLUG, type FilterCategoryOption } from "@/lib/shop/filter"
+import { CategoryScrollSync } from "./CategoryScrollSync"
+import { FilterSection } from "./FilterSection"
+import { ALL_FILTER_SLUG, type FilterCategoryOption } from "../lib/filter"
 
 interface ShopCatalogProps {
   categories: FilterCategoryOption[]

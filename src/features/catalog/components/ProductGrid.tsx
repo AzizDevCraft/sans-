@@ -1,7 +1,7 @@
-import type { ShopProduct } from "@/data/shop"
+import type { ShopProduct } from "@/data/catalog/shop"
 
-import { ProductCard } from "@/components/shop/ProductCard"
-import type { ProductTone } from "@/components/shop/ProductCard"
+import { ProductCard } from "./ProductCard"
+import type { ProductTone } from "./ProductCard"
 
 export interface ProductGridProps {
   products: ShopProduct[]

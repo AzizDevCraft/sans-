@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
-import heroOgImg from "@/assets/homepage/hero-img-og.jpg";
-import { Footer } from "@/components/layout/Footer";
-import { SiteChrome } from "@/components/layout/SiteChrome";
+import heroOgImg from "@/assets/brand/hero-img-og.jpg";
+import { Footer } from "@/features/layout/components/Footer";
+import { SiteChrome } from "@/features/layout/components/SiteChrome";
 
 const poppins = Poppins({
   variable: "--font-poppins",

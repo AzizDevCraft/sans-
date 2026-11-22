@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Logo } from "@/components/Logo"
 import Coeur from "@/components/icons/coeur"
 import GlovoLogo from "@/components/icons/glovoLogo"
-import { NAV_LINKS } from "@/lib/nav-links"
+import { NAV_LINKS } from "../lib/nav-links"
 import { cn } from "@/lib/utils"
 
 import { SocialLinks } from "./SocialLinks"

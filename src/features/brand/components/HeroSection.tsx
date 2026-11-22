@@ -4,9 +4,10 @@ import ArrowRightIcon from "@/components/icons/ArrowRightIcon"
 import { ButtonLink } from "@/components/ui/button-link"
 import { cn } from "@/lib/utils"
 
-import type { HeroContent, HomeImage } from "@/data/homepage"
+import type { HeroContent } from "@/data/brand/hero"
+import type { HomeImage } from "@/data/media"
 
-import { ScrollHint } from "../ScrollHint"
+import { ScrollHint } from "@/components/ScrollHint"
 
 /** Hero homepage : sombre en mobile/tablet (`.dark`), clair en desktop `xl:`. */
 

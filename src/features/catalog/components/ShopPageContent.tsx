@@ -1,8 +1,8 @@
-import { getShopData } from "@/data/shop"
+import { getShopData } from "@/data/catalog/shop"
 
 import { PageHeader } from "@/components/PageHeader"
-import { ProductSection } from "@/components/shop/ProductSection"
-import { ShopCatalog } from "@/components/shop/ShopCatalog"
+import { ProductSection } from "./ProductSection"
+import { ShopCatalog } from "./ShopCatalog"
 
 // Libellé court des pills de filtre (mobile), distinct de `category.name`.
 const FILTER_PILL_LABELS: Record<string, string> = {

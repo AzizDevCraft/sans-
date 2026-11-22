@@ -1,11 +1,11 @@
 import Image from "next/image"
 
-import type { ShopProduct } from "@/data/shop"
+import type { ShopProduct } from "@/data/catalog/shop"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import CaloriesIcon from "@/components/icons/CaloriesIcon"
-import GymIcon from "../icons/gym-icon"
+import GymIcon from "@/components/icons/gym-icon"
 
 export type ProductTone = "default" | "alt"
 

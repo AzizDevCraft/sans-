@@ -1,5 +1,5 @@
-import { CategoryFilterPill } from "@/components/shop/CategoryFilterPill"
-import { ALL_FILTER_SLUG, type FilterCategoryOption } from "@/lib/shop/filter"
+import { CategoryFilterPill } from "./CategoryFilterPill"
+import { ALL_FILTER_SLUG, type FilterCategoryOption } from "../lib/filter"
 
 interface FilterSectionProps {
   /** Catégories de la boutique, hors pill "Tous" (dérivée à part via `totalCount`). */

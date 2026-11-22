@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { useSearchParams } from "next/navigation"
 
-import { ALL_FILTER_SLUG } from "@/lib/shop/filter"
+import { ALL_FILTER_SLUG } from "../lib/filter"
 
 interface CategoryScrollSyncProps {
   /** Slug demandé, tel qu'appliqué localement (peut être inconnu). */

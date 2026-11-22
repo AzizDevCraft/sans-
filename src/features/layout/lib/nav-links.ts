@@ -1,6 +1,6 @@
 import type { Route } from "next"
 
-import type { NavLinkItem } from "@/components/layout/NavBar"
+import type { NavLinkItem } from "../components/NavBar"
 
 interface NavLinkBase {
   label: string

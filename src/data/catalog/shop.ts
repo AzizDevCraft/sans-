@@ -2,7 +2,7 @@ import "server-only"
 
 import { cacheLife, cacheTag } from "next/cache"
 
-import prisma from "@/lib/prisma"
+import prisma from "@/data/prisma"
 import type { Prisma } from "@/generated/prisma/client"
 
 const PRODUCT_IMAGE_SELECT = {

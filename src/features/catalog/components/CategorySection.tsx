@@ -1,7 +1,7 @@
 import type { Route } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import type { HomeCategory } from "@/data/homepage"
+import type { HomeCategory } from "@/data/catalog/categories"
 
 import { cn } from "@/lib/utils"
 import { SectionHeading } from "@/components/SectionHeading"

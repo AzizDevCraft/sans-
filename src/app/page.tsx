@@ -1,14 +1,17 @@
 import type { Metadata } from "next"
 
-import { CategorySection } from "@/components/home/CategorySection"
-import { EngagementSection } from "@/components/home/EngagementSection"
-import { HeroSection } from "@/components/home/HeroSection"
-import { IngredientsSection } from "@/components/home/IngredientsSection"
-import { NavigationSection } from "@/components/home/NavigationSection"
-import { PartnersSection } from "@/components/home/PartnersSection"
-import { PromisesSection } from "@/components/home/PromisesSection"
-import { QuizSection } from "@/components/home/QuizSection"
-import { getHeroOgImage, getHomepageData } from "@/data/homepage"
+import { getIngredientGallery } from "@/data/brand/gallery"
+import { getHeroContent, getHeroOgImage } from "@/data/brand/hero"
+import { getHomeCategories } from "@/data/catalog/categories"
+import { getPartners } from "@/data/partners/distributors"
+import { EngagementSection } from "@/features/brand/components/EngagementSection"
+import { HeroSection } from "@/features/brand/components/HeroSection"
+import { IngredientsSection } from "@/features/brand/components/IngredientsSection"
+import { PromisesSection } from "@/features/brand/components/PromisesSection"
+import { CategorySection } from "@/features/catalog/components/CategorySection"
+import { NavigationSection } from "@/features/layout/components/NavigationSection"
+import { PartnersSection } from "@/features/partners/components/PartnersSection"
+import { QuizSection } from "@/features/quiz/components/QuizSection"
 
 const HOME_TITLE = "SANS+ — Le Plaisir Sain, Sans Compromis"
 const HOME_DESCRIPTION =
@@ -45,16 +48,16 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
-  const data = await getHomepageData()
+  const [categories, partners] = await Promise.all([getHomeCategories(), getPartners()])
 
   return (
     <>
       <main>
-        <HeroSection hero={data.hero} />
+        <HeroSection hero={getHeroContent()} />
         <PromisesSection />
-        <CategorySection categories={data.categories} />
-        <IngredientsSection ingredientGallery={data.ingredientGallery} />
-        <PartnersSection partners={data.partners} />
+        <CategorySection categories={categories} />
+        <IngredientsSection ingredientGallery={getIngredientGallery()} />
+        <PartnersSection partners={partners} />
         <EngagementSection />
         <QuizSection />
         <NavigationSection />

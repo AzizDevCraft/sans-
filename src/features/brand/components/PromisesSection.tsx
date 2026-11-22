@@ -4,8 +4,8 @@ import { IconBadge } from "@/components/IconBadge"
 import { SectionHeading } from "@/components/SectionHeading"
 import Block from "@/components/icons/Block"
 import Coeur from "@/components/icons/coeur"
-import GymIcon from "../icons/gym-icon"
-import Vegan from "../icons/vegan"
+import GymIcon from "@/components/icons/gym-icon"
+import Vegan from "@/components/icons/vegan"
 import { cn } from "@/lib/utils"
 
 interface PromiseItemData {

@@ -1,8 +1,8 @@
-import type { ShopCategory } from "@/data/shop"
+import type { ShopCategory } from "@/data/catalog/shop"
 
 import { SectionHeading } from "@/components/SectionHeading"
-import type { ProductTone } from "@/components/shop/ProductCard"
-import { ProductGrid } from "@/components/shop/ProductGrid"
+import type { ProductTone } from "./ProductCard"
+import { ProductGrid } from "./ProductGrid"
 import { cn } from "@/lib/utils"
 
 export interface ProductSectionProps {

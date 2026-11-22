@@ -1,5 +1,5 @@
 import { SectionHeading } from "@/components/SectionHeading"
-import type { HomePartner } from "@/data/homepage"
+import type { HomePartner } from "@/data/partners/distributors"
 
 const HEADING_TITLE = "Ils ont choisi SANS+"
 const HEADING_SUBTITLE = "Retrouvez nos produits chez nos partenaires de confiance"
