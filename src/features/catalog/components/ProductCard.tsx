@@ -1,8 +1,10 @@
+import type { Route } from "next"
 import Image from "next/image"
+import Link from "next/link"
 
 import type { ShopProduct } from "@/data/catalog/shop"
 
-import { Button } from "@/components/ui/button"
+import { ButtonLink } from "@/components/ui/button-link"
 import { cn } from "@/lib/utils"
 import CaloriesIcon from "@/components/icons/CaloriesIcon"
 import GymIcon from "@/components/icons/gym-icon"
@@ -67,10 +69,11 @@ export interface ProductCardProps {
 export function ProductCard({ product, tone }: ProductCardProps) {
   const { name, title, price, unitCount, calories, proteins, image } = product
   const mobileDescription = getMobileDescription(title)
+  const href = `/boutique/${product.slug}` as Route
 
   return (
     // overflow-visible dès md: pour ne pas rogner l'ombre du bloc contenu
-    <article className="flex w-full overflow-hidden rounded-md bg-background shadow-base md:flex-col md:overflow-visible md:rounded-none md:bg-transparent md:shadow-none">
+    <article className="relative flex w-full overflow-hidden rounded-md bg-background shadow-base md:flex-col md:overflow-visible md:rounded-none md:bg-transparent md:shadow-none">
       {/* md: ratio Figma 330×280 (33/28), 62.5rem (1000px, en rem pour passer après md:): 4/3, xl: 360×280 (9/7) */}
       <div className="relative h-40 w-31 shrink-0 overflow-hidden rounded-tl-md rounded-bl-md md:aspect-33/28 md:h-auto md:w-full md:rounded-tl-xl md:rounded-tr-xl md:rounded-bl-none min-[62.5rem]:aspect-4/3 xl:aspect-9/7">
         <Image
@@ -110,8 +113,8 @@ export function ProductCard({ product, tone }: ProductCardProps) {
           </p>
         </div>
 
-        {/* TODO(logic-builder): brancher la navigation vers la fiche produit */}
-        <Button
+        <ButtonLink
+          href={href}
           variant="secondary"
           fullWidth
           className={cn(
@@ -122,8 +125,14 @@ export function ProductCard({ product, tone }: ProductCardProps) {
           )}
         >
           Voir les détails
-        </Button>
+        </ButtonLink>
       </div>
+      {/* mobile : carte entière cliquable (le CTA prend le relais dès md:) */}
+      <Link
+        href={href}
+        aria-label={`Voir les détails de ${name}`}
+        className="absolute inset-0 rounded-md focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring md:hidden"
+      />
     </article>
   )
 }
