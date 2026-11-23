@@ -23,6 +23,7 @@ export function SiteChrome({ children }: SiteChromeProps) {
   const pathname = usePathname()
   // "/" est actuellement la seule page avec un hero sombre ;
   const hasHero = pathname === "/"
+  // /boutique/<slug> : nav masquée en mobile (page immersive)
 
   const [menuOpen, setMenuOpen] = useState(false)
   // Variante initiale dérivée de la route pour éviter un flash au premier rendu
@@ -72,13 +73,17 @@ export function SiteChrome({ children }: SiteChromeProps) {
   }, [menuOpen])
 
   return (
-    <div className="flex flex-1 flex-col">
-      <NavBar
-        variant={variant}
-        hasHero={hasHero}
-        links={links}
-        onMenuClick={() => setMenuOpen(true)}
-      />
+    <div className="group/chrome flex flex-1 flex-col">
+      {/* contents : la NavBar sticky garde le flux de SiteChrome comme parent ;
+          masquée en mobile sous une page immersive (`<main data-immersive>`) */}
+      <div className="contents max-md:group-has-data-immersive/chrome:hidden">
+        <NavBar
+          variant={variant}
+          hasHero={hasHero}
+          links={links}
+          onMenuClick={() => setMenuOpen(true)}
+        />
+      </div>
 
       {children}
 
