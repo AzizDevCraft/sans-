@@ -41,6 +41,7 @@
   --color-card: var(--card);
   --color-primary-soft: var(--primary-soft);
   --color-primary-soft-foreground: var(--primary-soft-foreground);
+  --color-success-light: var(--success-light);
   --color-secondary-soft: var(--secondary-soft);
   --color-secondary-soft-foreground: var(--secondary-soft-foreground);
   --color-card-alt: var(--card-alt);
@@ -57,6 +58,8 @@
   --shadow-base:
     0 3px 9px 0 oklch(0.2847 0.0396 49.22 / 0.25),
     0 10px 24px 0 oklch(0.2847 0.0396 49.22 / 0.15);
+  /* barre collée en bas d'écran : ombre projetée vers le haut */
+  --shadow-bar: 0 -2px 8px 0 oklch(0.2847 0.0396 49.22 / 0.25);
   --shadow-hero-image:
     0 12px 24px oklch(28.466% 0.03957 49.196 / 0.25),
     0 30px 80px oklch(28.466% 0.03957 49.196 / 0.15);
