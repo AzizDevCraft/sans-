@@ -28,6 +28,14 @@ model Product {
   slug            String               @unique
   createdAt       DateTime             @default(now())
   updatedAt       DateTime             @updatedAt
+
+  description     String?
+  /// Composition pour 100 g (barre de composition de la page produit).
+  proteinsPer100g Decimal?             @db.Decimal(4, 1)
+  carbsPer100g    Decimal?             @db.Decimal(4, 1)
+  fatPer100g      Decimal?             @db.Decimal(4, 1)
+  fiberPer100g    Decimal?             @db.Decimal(4, 1)
+  reviews         Review[]
 }
 
 model Category {
@@ -93,7 +101,32 @@ model ProductIngredients {
   product    Product    @relation(fields: [idProd], references: [id])
   ingredient Ingredient @relation(fields: [idIngredient], references: [id])
 
+  /// Ordre d'affichage des ingrédients d'un produit.
+  position Int @default(0)
+
   @@id([idProd, idIngredient])
+}
+
+enum ReviewerProfile {
+  STUDENT
+  ATHLETE
+  ACTIVE_MOM
+  COACH
+  ENTREPRENEUR
+  OTHER
+}
+
+model Review {
+  id        String          @id @default(cuid(2))
+  productId String
+  product   Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  rating    Int
+  profile   ReviewerProfile
+  firstName String?
+  message   String
+  createdAt DateTime        @default(now())
+
+  @@index([productId, createdAt])
 }
 
 model Distributor {
